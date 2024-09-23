@@ -20,7 +20,7 @@
           </linearGradient>
         </defs>
       </svg>
-      <a id="return-main-mentor-page" href="{% url 'user_profile:mentor_profile' %}">
+      <a id="return-main-mentor-page" href="{% url 'user_profile:mentor_groups' %}">
         <svg id="detail-return-btn" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path opacity="0.4" d="M23.6103 2.9165H11.404C6.08109 2.9165 2.9165 6.08109 2.9165 11.3894V23.5957C2.9165 28.904 6.08109 32.0686 11.3894 32.0686H23.5957C28.904 32.0686 32.0686 28.904 32.0686 23.5957V11.3894C32.0832 6.08109 28.9186 2.9165 23.6103 2.9165Z" fill="url(#paint0_linear_401_711)"/>
           <path d="M20.2999 12.3665H12.7895L13.2708 11.8853C13.6937 11.4624 13.6937 10.7624 13.2708 10.3395C13.0649 10.136 12.7872 10.022 12.4979 10.022C12.2085 10.022 11.9308 10.136 11.7249 10.3395L9.43535 12.629C9.01243 13.052 9.01243 13.752 9.43535 14.1749L11.7249 16.4645C11.9437 16.6832 12.2208 16.7853 12.4979 16.7853C12.7749 16.7853 13.052 16.6832 13.2708 16.4645C13.6937 16.0415 13.6937 15.3415 13.2708 14.9186L12.8916 14.5395H20.2999C22.1666 14.5395 23.6979 16.0561 23.6979 17.9374C23.6979 19.8186 22.1812 21.3353 20.2999 21.3353H13.1249C12.527 21.3353 12.0312 21.8311 12.0312 22.429C12.0312 23.027 12.527 23.5228 13.1249 23.5228H20.2999C23.377 23.5228 25.8854 21.0145 25.8854 17.9374C25.8854 14.8603 23.377 12.3665 20.2999 12.3665Z" fill="url(#paint1_linear_401_711)"/>
@@ -36,6 +36,8 @@
           </defs>
         </svg>
       </a>
+    </div>
+    
     </div>
     <div class="group-name-block">
       <h4 class="group-name-text gradient-text-lowercase no-cp">”{{ group.name }}“</h4>
@@ -64,6 +66,20 @@
       </linearGradient>
     </defs>
   </svg>
+  <div class="group-event-header">
+    {% for event in event_list %}
+      <div class="group-event-active">
+        ранд
+      </div>
+      <div class="group-event">
+        {{ event.title }}
+      </div>
+    {% empty %}
+    <div class="group-event-empty">
+      Сегодня нет занятий
+    </div>
+    {% endfor %}
+</div>
   <div class="detail-content">
     {% for student in group.students.all %}
       <div class="detail-content-item">
@@ -91,6 +107,9 @@
             </button>
           </form>
         </div>
+        {% if not event_list %}
+        <div></div>
+        {% else %}
         <div class="detail-btns no-cp">
           <button class="add-energy" id="energy-{{forloop.counter}}">
             <input type="hidden" class="student-pk" value="{{student.pk}}"/>
@@ -115,6 +134,7 @@
             </div>
           </button>
         </div>
+        {% endif %}
       </div>
     {% empty %}
       <h1 class="empty-message">В этой группе пока нет участников</h1>
@@ -159,9 +179,9 @@
     <form action="" method="post">
       {% csrf_token %}
       <div class="counter-block">
-        <button id="decrement">-</button>
+        Начислить
         <div id="counter">1</div>
-        <button id="increment">+</button>
+        энергию
       </div>
       <div class="modal-btns">
         <input type="hidden" id="student-add" name="student-add" value=""/>

@@ -12,17 +12,33 @@ from django.views import View
 from django.views.generic import DetailView
 from dramatiq import pipeline
 from webpush.utils import send_to_subscription
-
-from .models import Achievements, MentorProfile, StudentProfile, Group, Tree, CounterOfBusters, Attendance
+from accounts.models.teacher_codes import TeacherCode, AdminCode
+from .models import Achievements, MentorProfile, PersonalProfile, StudentProfile, Group, Tree, CounterOfBusters, Attendance
 from .tasks import tree_progress
 from .utilities import creater_report
 from shop.models import Buster
+from calendar_app.models import Event
 
 
-class GroupDetail(LoginRequiredMixin, DetailView):
+class GroupDetail(LoginRequiredMixin, View):
     model = Group
     raise_exception = True
     template_name = "user_profile/group_detail.html"
+
+    def get(self, request, *args, **kwargs):
+        mentor_profile = request.user.mentorprofile
+        group_pk = kwargs['pk']
+        group = Group.objects.get(pk=group_pk)
+        curr_date = datetime.datetime.now().date()
+        event_list = Event.event_manager.get_events_by_date_and_groups_weekly(curr_date, [group_pk])
+
+        context = {
+            'data': mentor_profile,
+            'group': group,
+            'event_list': [event.template_output() for event in event_list]
+        }
+
+        return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
         if request.POST.get('student-delete'):
@@ -55,7 +71,6 @@ class GroupDetail(LoginRequiredMixin, DetailView):
             elif type_of_add == 'money':
                 student.balance += int(counter)
             student.save()
-
         return HttpResponseRedirect(reverse("user_profile:group_detail", kwargs=kwargs))
 
 
@@ -148,6 +163,52 @@ class ProfileForMentor(LoginRequiredMixin, View):
         return render(request, self.template_name, context)
 
 
+class MentorDashboard(LoginRequiredMixin, View):
+    raise_exception = True
+    template_name = "user_profile/mentor_groups.html"
+
+    def post(self, request, *args, **kwargs):
+        if request.POST.get('group-name-input'):
+            group_name = request.POST.get('group-name-input')
+            mentor_profile_id = request.user.mentorprofile
+            group = Group.objects.create(name=group_name)
+            group.mentors.add(mentor_profile_id)
+        elif request.POST.get('group-delete'):
+            group_pk = request.POST.get('group-delete')
+            group = Group.objects.filter(pk=group_pk)
+            group.delete()
+        else:
+            pass
+
+        return redirect('user_profile:mentor_profile')
+
+    def get(self, request, *args, **kwargs):
+        mentor_profile = request.user.mentorprofile
+        groups = Group.objects.filter(mentors=mentor_profile.pk)
+        
+
+        context = {
+            'data': mentor_profile,
+            'groups': groups,
+        }
+
+        return render(request, self.template_name, context)
+    
+
+
+class ProfileForPersonal(LoginRequiredMixin, View):
+    raise_exception = True
+    template_name = "admin_profile/admin_profile.html"
+
+    def get(self, request, *args, **kwargs):
+        admin_profile = request.user.personalprofile
+
+        context = {
+            'data': admin_profile,
+        }
+        return render(request, self.template_name, context)
+
+
 @login_required
 def invite_group(request, name, pk):
     if request.user.is_teacher:
@@ -172,6 +233,9 @@ def get_photo(request):
         elif hasattr(request.user, 'mentorprofile'):
             user = request.user.mentorprofile
             returned_view = 'user_profile:mentor_profile'
+        elif hasattr(request.user, 'personalprofile'):
+            user = request.user.personalprofile
+            returned_view = 'user_profile:personal_profile'
         else:
             return HttpResponseBadRequest()
 

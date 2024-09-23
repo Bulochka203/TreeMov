@@ -41,7 +41,7 @@ class User(AbstractBaseUser, PermissionsMixin):
                               unique=True, help_text="Пример: example@example.com")
     is_teacher = models.BooleanField(_("Teacher status"), default=False)
     is_active = models.BooleanField(_("Active"), default=True)
-    is_staff = models.BooleanField(default=False)
+    is_staff = models.BooleanField(_("Admin status"), default=False)
     created_at = models.DateTimeField(_("Date Joined"), auto_now_add=True)
     updated_at = models.DateTimeField(_("Last Updated"), auto_now=True)
     objects = UserManager()

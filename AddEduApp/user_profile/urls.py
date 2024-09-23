@@ -5,6 +5,8 @@ app_name = "user_profile"
 
 urlpatterns = [
     path('mentor', views.ProfileForMentor.as_view(), name='mentor_profile'),
+    path('dashboard_groups', views.MentorDashboard.as_view(), name='mentor_groups'),
+    path('admin', views.ProfileForPersonal.as_view(), name='personal_profile'),
     path('student', views.ProfileForStudent.as_view(), name='student_profile'),
     path('validate_group_name', views.validate_username, name='validate_group_name'),
     path('mentor/<str:name>/<int:pk>', views.GroupDetail.as_view(), name='group_detail'),

@@ -3,6 +3,7 @@ import datetime
 from django.contrib.postgres.fields import ArrayField
 from django.db import models
 from accounts.models.user import User
+from accounts.models.teacher_codes import TeacherCode, AdminCode, SchoolName
 from shop.models import Buster
 from achievments.models import Achievements
 
@@ -15,7 +16,7 @@ class AbstractProfile(models.Model):
     photo = models.ImageField(upload_to='profiles/', help_text="Фото пользователя", blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
+    school = models.ForeignKey(SchoolName, on_delete = models.SET_NULL, null=True)
     class Meta:
         abstract = True
 
@@ -89,6 +90,13 @@ class StudentProfile(AbstractProfile):
 
 
 class MentorProfile(AbstractProfile):
+    code = models.ForeignKey(TeacherCode, on_delete = models.SET_NULL, null=True)
+    def __str__(self):
+        return f'{self.first_name } {self.last_name}'
+
+
+class PersonalProfile(AbstractProfile):
+    code = models.ForeignKey(AdminCode, on_delete = models.SET_NULL, null=True)
     def __str__(self):
         return f'{self.first_name } {self.last_name}'
 

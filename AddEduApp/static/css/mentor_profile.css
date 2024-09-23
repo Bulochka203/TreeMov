@@ -329,3 +329,36 @@ input[name="dates"] {
     margin-top: -2px;
     color: #B662D3;
 }
+
+.profile-btn{
+  margin: 10px;
+  justify-content: center;
+  align-items: center;
+  display: inherit;
+  height: 7.5vh;
+  text-align: center;
+  width: 60%;
+  background: #B662D3;
+  border-radius: 12px;
+  font-size: large;
+  font-weight: 900;
+}
+
+.profile-btn a {
+  display: flex;
+  color: white;
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-btn:hover{
+  background: #6c357e;
+}
+
+.profile-btn:active{
+  background: #2a1f2e;
+}
+

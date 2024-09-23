@@ -1,0 +1,150 @@
+{% extends 'admin_profile/base.html' %}
+{% load static %}
+{% block title %} Панель администратора {% endblock %}
+{% block content %}
+<div class="sidebar close">
+    <div class="logo-details">
+      <svg width="40" height="40" viewBox="0 0 144 144" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="5" width="134" height="134" rx="32" fill="white" stroke="url(#paint0_linear_857_71)" stroke-width="10"/>
+        <path d="M111.319 24.3857C111.892 24.9833 112.245 25.7509 112.319 26.5631C112.392 27.3752 112.183 28.184 111.724 28.8571L86.9336 65.3098L110.391 72.3455C111.08 72.552 111.696 72.9507 112.161 73.4925C112.627 74.0344 112.922 74.6955 113.01 75.3943C113.098 76.0932 112.976 76.7992 112.658 77.4251C112.34 78.051 111.84 78.5695 111.221 78.9166L37.2061 120.465C36.4898 120.867 35.6519 121.018 34.829 120.893C34.0062 120.769 33.2468 120.375 32.6747 119.778C32.1026 119.18 31.7515 118.413 31.6787 117.601C31.6058 116.79 31.8155 115.983 32.2736 115.31L57.0662 78.8507L33.6089 71.815C32.9195 71.6085 32.304 71.2098 31.8386 70.668C31.3732 70.1261 31.0782 69.465 30.9899 68.7662C30.9017 68.0673 31.0241 67.3613 31.3421 66.7354C31.66 66.1095 32.1596 65.591 32.7791 65.2439L106.794 23.696C107.509 23.2941 108.346 23.1428 109.168 23.2668C109.99 23.3907 110.748 23.7827 111.321 24.3788L111.319 24.3857ZM43.84 67.384L63.9089 73.4033C64.4613 73.5689 64.9681 73.8585 65.3886 74.2489C65.809 74.6393 66.1314 75.1196 66.3297 75.6511C66.5281 76.1825 66.5968 76.7504 66.5305 77.309C66.4642 77.8676 66.2647 78.4013 65.9479 78.8672L47.1218 106.542L100.153 76.7744L80.0908 70.7572C79.5384 70.5916 79.0316 70.302 78.6112 69.9116C78.1907 69.5212 77.8684 69.0409 77.67 68.5094C77.4717 67.978 77.4029 67.4101 77.4692 66.8515C77.5356 66.2929 77.7351 65.7592 78.0519 65.2933L96.8779 37.6187L43.84 67.384Z" fill="url(#paint1_linear_857_71)"/>
+        <path d="M43.84 67.384L63.9089 73.4033C64.4613 73.5689 64.9681 73.8585 65.3886 74.2489C65.809 74.6393 66.1314 75.1196 66.3297 75.6511C66.5281 76.1825 66.5968 76.7504 66.5305 77.309C66.4642 77.8676 66.2647 78.4013 65.9479 78.8672L47.1218 106.542L100.153 76.7744L80.0908 70.7572C79.5384 70.5916 79.0316 70.302 78.6112 69.9116C78.1907 69.5212 77.8684 69.0409 77.67 68.5094C77.4717 67.978 77.4029 67.4101 77.4692 66.8515C77.5356 66.2929 77.7351 65.7592 78.0519 65.2933L96.8779 37.6187L43.84 67.384Z" fill="url(#paint2_linear_857_71)"/>
+        <defs>
+          <linearGradient id="paint0_linear_857_71" x1="72" y1="0" x2="72" y2="144" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#A816DB"/>
+            <stop offset="1" stop-color="#16C1DB"/>
+          </linearGradient>
+          <linearGradient id="paint1_linear_857_71" x1="88.5109" y1="17.0316" x2="55.4888" y2="127.129" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#16C1DB"/>
+            <stop offset="0.9999" stop-color="#A816DB"/>
+            <stop offset="1" stop-color="#A816DB" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="paint2_linear_857_71" x1="88.5109" y1="17.0316" x2="55.4888" y2="127.129" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#16C1DB"/>
+            <stop offset="0.9999" stop-color="#A816DB"/>
+            <stop offset="1" stop-color="#A816DB" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <ul class="sidebar-links">
+      <li>
+        <a href="{% url 'user_profile:personal_profile' %}">
+          <i class='bx bx-home' ></i>
+          <span class="link_name">Панель управления</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Панель управления</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-cog' ></i>
+          <span class="link_name">Настройки</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Настройки</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="{% url 'accounts:signout' %}">
+          <i class='bx bx-log-out'></i>
+          <span class="link_name">Выход</span>
+          
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="{% url 'accounts:signout' %}">Выход</a></li>
+        </ul>
+      </li>
+      <li>
+    <div class="profile-details">
+      <div class="profile-content">
+        <form method="post" enctype="multipart/form-data" action="{% url 'user_profile:get_photo' %}" id="pic-form">
+          {% csrf_token %}
+          {% if not data.photo %}
+            <label class="image-button not-photo" for="input"></label>
+          {% else %}
+            <label class="image-button" for="input"><img class="profile-img" src="{{ data.photo.url }}" alt=""></label>
+          {% endif %}
+          <input type="file" name="pic" id="input" accept=".jpg, .png" onchange="load_pic()">
+        </form>
+      </div>
+      <div class="name-job">
+        <div class="profile_name">
+            {% if data.first_name and data.last_name %}
+                {{ data.first_name }} {{ data.last_name }}
+            {% else %}
+                Name Surname
+            {% endif %}
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
+</div>
+  <section class="home-section">
+    <div class="home-content">
+      <i class='bx bx-menu'></i>
+      <span class="text"></span>
+    </div>
+    <div class="table-responsive">
+      <table>
+          <thead>
+              <tr>
+                  <th><input type="checkbox" class="form-checkbox" /></th>
+                  <th>Name</th>
+                  <th>Date</th>
+                  <th>Sale</th>
+                  <th class="!text-center">Action</th>
+              </tr>
+          </thead>
+          <tbody>
+                  <tr>
+                      <td><input type="checkbox" class="form-checkbox" /></td>
+                      <td x-text="data.name" class="whitespace-nowrap"></td>
+                      <td x-text="data.date"></td>
+                      <td x-text="data.sale"></td>
+                      <td class="text-center">
+                          <ul class="flex items-center justify-center gap-2">
+                              <li>
+                                  <a href="javascript:;" x-tooltip="Settings">
+                                      <svg> ... </svg>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="javascript:;" x-tooltip="Edit">
+                                      <svg> ... </svg>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="javascript:;" x-tooltip="Delete">
+                                      <svg> ... </svg>
+                                  </a>
+                              </li>
+                          </ul>
+                      </td>
+                  </tr>
+          </tbody>
+      </table>
+  </div>
+  
+  
+  </section>
+
+  <script>
+    let arrow = document.querySelectorAll(".arrow");
+    for (var i = 0; i < arrow.length; i++) {
+      arrow[i].addEventListener("click", (e)=>{
+     let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+     arrowParent.classList.toggle("showMenu");
+      });
+    }
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".bx-menu");
+    console.log(sidebarBtn);
+    sidebarBtn.addEventListener("click", ()=>{
+      sidebar.classList.toggle("close");
+    });
+    </script>
+  
+
+{% endblock %}

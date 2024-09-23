@@ -64,112 +64,14 @@
     </defs>
   </svg>
   <div class="mentor-body">
-    <div id="group-list" class="group-list no-cp">
-      <div class="groups-header">
-        <h1 class="gradient-text-lowercase no-cp">Группы</h1>
-        <svg id="settings-btn" class="group-settings-button-icon svg-btn" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path opacity="0.4" d="M2.0835 13.4178V11.5845C2.0835 10.5011 2.96891 9.6053 4.06266 9.6053C5.94808 9.6053 6.71891 8.27197 5.771 6.63655C5.22933 5.69905 5.55225 4.4803 6.50016 3.93863L8.30225 2.90738C9.12516 2.4178 10.1877 2.70947 10.6772 3.53238L10.7918 3.7303C11.7293 5.36572 13.271 5.36572 14.2189 3.7303L14.3335 3.53238C14.8231 2.70947 15.8856 2.4178 16.7085 2.90738L18.5106 3.93863C19.4585 4.4803 19.7814 5.69905 19.2397 6.63655C18.2918 8.27197 19.0627 9.6053 20.9481 9.6053C22.0314 9.6053 22.9272 10.4907 22.9272 11.5845V13.4178C22.9272 14.5011 22.0418 15.397 20.9481 15.397C19.0627 15.397 18.2918 16.7303 19.2397 18.3657C19.7814 19.3136 19.4585 20.522 18.5106 21.0636L16.7085 22.0949C15.8856 22.5845 14.8231 22.2928 14.3335 21.4699L14.2189 21.272C13.2814 19.6365 11.7397 19.6365 10.7918 21.272L10.6772 21.4699C10.1877 22.2928 9.12516 22.5845 8.30225 22.0949L6.50016 21.0636C6.0461 20.8022 5.71431 20.3713 5.57761 19.8655C5.4409 19.3597 5.51045 18.8203 5.771 18.3657C6.71891 16.7303 5.94808 15.397 4.06266 15.397C2.96891 15.397 2.0835 14.5011 2.0835 13.4178Z" fill="url(#paint0_linear_401_550)"/>
-          <path d="M12.5002 15.8853C13.398 15.8853 14.2591 15.5287 14.894 14.8938C15.5289 14.2589 15.8856 13.3978 15.8856 12.4999C15.8856 11.6021 15.5289 10.741 14.894 10.1061C14.2591 9.47118 13.398 9.1145 12.5002 9.1145C11.6023 9.1145 10.7412 9.47118 10.1063 10.1061C9.47142 10.741 9.11475 11.6021 9.11475 12.4999C9.11475 13.3978 9.47142 14.2589 10.1063 14.8938C10.7412 15.5287 11.6023 15.8853 12.5002 15.8853Z" fill="url(#paint1_linear_401_550)"/>
-          <defs>
-            <linearGradient id="paint0_linear_401_550" x1="12.5054" y1="2.66895" x2="12.5054" y2="22.3333" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#A816DB"/>
-              <stop offset="1" stop-color="#16C1DB"/>
-            </linearGradient>
-            <linearGradient id="paint1_linear_401_550" x1="12.5002" y1="9.1145" x2="12.5002" y2="15.8853" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#A816DB"/>
-              <stop offset="1" stop-color="#16C1DB"/>
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-      <div class="groups">
-        {% for group in groups %}
-          <div class="group">
-            <div class="group-name-field">
-              <a href="{% url 'user_profile:group_detail' pk=group.pk name=group.name %}" class="group-name">{{group}}</a>
-            </div>
-            <div hidden class="delete-btn-field">
-              <form action="" method="post">
-              {% csrf_token %}
-              <input type="hidden" name="group-delete" value="{{group.pk}}"/>
-              <button class="delete-btn">
-                <svg class="delete-svg svg-btn" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <g clip-path="url(#clip0_401_640)">
-                    <path opacity="0.4" d="M23.0398 23.0399C26.7824 19.2972 26.7824 13.2296 23.0398 9.48699C19.2971 5.74436 13.2295 5.74436 9.48689 9.48699C5.74426 13.2296 5.74426 19.2972 9.48689 23.0399C13.2295 26.7825 19.2971 26.7825 23.0398 23.0399Z" fill="black"/>
-                    <path d="M18.4656 13.0446L16.2633 15.247L14.061 13.0446C13.7831 12.7668 13.3223 12.7668 13.0445 13.0446C12.7667 13.3225 12.7667 13.7833 13.0445 14.0611L15.2468 16.2634L13.0445 18.4658C12.7667 18.7436 12.7667 19.2044 13.0445 19.4822C13.3223 19.7601 13.7831 19.7601 14.061 19.4822L16.2633 17.2799L18.4656 19.4822C18.7435 19.7601 19.2043 19.7601 19.4821 19.4822C19.7599 19.2044 19.7599 18.7436 19.4821 18.4658L17.2798 16.2634L19.4821 14.0611C19.7599 13.7833 19.7599 13.3225 19.4821 13.0446C19.2043 12.7668 18.7435 12.7668 18.4656 13.0446Z" fill="black"/>
-                  </g>
-                </svg>
-              </button>
-            </form>
-            </div>
-          </div>
-        {% empty %}
-          <h1 class="empty-message">У вас пока нет групп</h1>
-        {% endfor %}
-        <div hidden id="add-save-btns">
-          <button id="add-group-btn">
-            <svg id="svg-add-group" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M34.1665 27.9167H30.4165V24.1667C30.4165 23.4834 29.8498 22.9167 29.1665 22.9167C28.4832 22.9167 27.9165 23.4834 27.9165 24.1667V27.9167H24.1665C23.4832 27.9167 22.9165 28.4834 22.9165 29.1667C22.9165 29.8501 23.4832 30.4167 24.1665 30.4167H27.9165V34.1667C27.9165 34.8501 28.4832 35.4167 29.1665 35.4167C29.8498 35.4167 30.4165 34.8501 30.4165 34.1667V30.4167H34.1665C34.8498 30.4167 35.4165 29.8501 35.4165 29.1667C35.4165 28.4834 34.8498 27.9167 34.1665 27.9167Z" fill="url(#paint0_linear_401_647)"/>
-              <path opacity="0.4" d="M36.6667 14.1999V6.63325C36.6667 4.28325 35.6 3.33325 32.95 3.33325H26.2167C23.5667 3.33325 22.5 4.28325 22.5 6.63325V14.1833C22.5 16.5499 23.5667 17.4833 26.2167 17.4833H32.95C35.6 17.4999 36.6667 16.5499 36.6667 14.1999Z" fill="url(#paint1_linear_401_647)"/>
-              <path d="M17.5002 14.1999V6.63325C17.5002 4.28325 16.4335 3.33325 13.7835 3.33325H7.05016C4.40016 3.33325 3.3335 4.28325 3.3335 6.63325V14.1833C3.3335 16.5499 4.40016 17.4833 7.05016 17.4833H13.7835C16.4335 17.4999 17.5002 16.5499 17.5002 14.1999Z" fill="url(#paint2_linear_401_647)"/>
-              <path opacity="0.4" d="M17.5002 32.95V26.2167C17.5002 23.5667 16.4335 22.5 13.7835 22.5H7.05016C4.40016 22.5 3.3335 23.5667 3.3335 26.2167V32.95C3.3335 35.6 4.40016 36.6667 7.05016 36.6667H13.7835C16.4335 36.6667 17.5002 35.6 17.5002 32.95Z" fill="url(#paint3_linear_401_647)"/>
-              <defs>
-                <linearGradient id="paint0_linear_401_647" x1="29.1665" y1="22.9167" x2="29.1665" y2="35.4167" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#A816DB"/>
-                  <stop offset="1" stop-color="#16C1DB"/>
-                </linearGradient>
-                <linearGradient id="paint1_linear_401_647" x1="29.5833" y1="3.33325" x2="29.5833" y2="17.4835" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#A816DB"/>
-                  <stop offset="1" stop-color="#16C1DB"/>
-                </linearGradient>
-                <linearGradient id="paint2_linear_401_647" x1="10.4168" y1="3.33325" x2="10.4168" y2="17.4835" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#A816DB"/>
-                  <stop offset="1" stop-color="#16C1DB"/>
-                </linearGradient>
-                <linearGradient id="paint3_linear_401_647" x1="10.4168" y1="22.5" x2="10.4168" y2="36.6667" gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#A816DB"/>
-                  <stop offset="1" stop-color="#16C1DB"/>
-                </linearGradient>
-              </defs>
-            </svg>
-            Добавить
-          </button>
-        </div>
-      </div>
+    <div class="profile-btn">
+      <a href="https://t.me/Treemov_bot">Тех. поддержка</a>
     </div>
-    <div id="generate-report">
-      <button id="report-btn">Сформировать отчёт</button>
+    <div class="profile-btn">
+      <a href="#">Настройки</a>
+    </div>
+    <div class="profile-btn">
+      <a href="#">Изменить тариф</a>
     </div>
   </div>
-</div>
-<script type="text/javascript" src="/static/js/profile/mentor_profile_settings_button.js"></script>
-<div hidden id="modal" class="form-add-modal">
-  <div class="modal-window">
-    <p class="modal-title-text gradient-text-lowercase">Название</p>
-    <form action="" method="post">
-      {% csrf_token %}
-      <input placeholder="придумайте название группы" id="input-group-name" name="group-name-input" class="input-group-name is-valid" type="text"/>
-      <button id="add-group-btn-modal">Добавить</button>
-    </form>
-  </div>
-  <div class="overlay-add-window"></div>
-</div>
-<div hidden id="modal-for-report" class="form-add-modal">
-  <div class="modal-window">
-    <p class="report-modal modal-title-text gradient-text-lowercase">Отчёт</p>
-    <p class="title-modal-report">Выберите группы</p>
-    <form action="{% url 'user_profile:create_report'%}" method="post">
-      {% csrf_token %}
-      <div id="groups-modal">
-      </div>
-      <p class="title-modal-report">Выберите период</p>
-      <input type="text" name="dates"/>
-        <script defer>
-          $('input[name="dates"]').daterangepicker();
-        </script>
-      <button id="go-generate-report">Сформировать отчёт</button>
-    </form>
-  </div>
-  <div class="overlay-add-window"></div>
-</div>
 {% endblock %}

@@ -3,10 +3,10 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.password_validation import validate_password
 
 from .models import User
-from .models.teacher_codes import TeacherCode
+from .models.teacher_codes import TeacherCode, AdminCode
 from .validators import validate_name
 from shop.models import Buster
-from user_profile.models import MentorProfile, PlayerStatistics, StudentProfile, CounterOfBusters
+from user_profile.models import MentorProfile, PlayerStatistics, StudentProfile, CounterOfBusters, PersonalProfile
 
 
 class SignInForm(forms.Form):
@@ -62,17 +62,23 @@ class SignUpForm(forms.ModelForm):
         user.set_password(self.cleaned_data["password1"])
 
         is_teacher = False
+        is_admin = False
         if teacher_code := self.cleaned_data["teacher_code"]:
             is_teacher = TeacherCode.objects.filter(code=teacher_code).exists()
+            is_admin = AdminCode.objects.filter(code=teacher_code).exists()
 
         if commit:
             if is_teacher:
                 user.is_teacher = True
-
+            if is_admin:
+                user.is_staff = True
             user.save()
 
             if user.is_teacher:
                 MentorProfile.objects.create(first_name=self.cleaned_data["first_name"],
+                                             last_name=self.cleaned_data["last_name"], user=user)
+            elif user.is_staff:
+                PersonalProfile.objects.create(first_name=self.cleaned_data["first_name"],
                                              last_name=self.cleaned_data["last_name"], user=user)
             else:
                 statistics = PlayerStatistics()

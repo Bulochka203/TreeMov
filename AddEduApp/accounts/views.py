@@ -30,6 +30,8 @@ class SignInView(View):
                 login(request, user)
                 if user.is_teacher:
                     return redirect(f"user_profile:mentor_profile")
+                elif user.is_staff:
+                    return redirect(f"user_profile:personal_profile")
                 else:
                     return redirect(f"user_profile:student_profile")
         context = {"form": forms}
@@ -51,7 +53,6 @@ class SignUpView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             form.save()
-
             email = form.cleaned_data["email"]
             password = form.cleaned_data["password1"]
             user = authenticate(email=email, password=password)
@@ -59,6 +60,8 @@ class SignUpView(View):
                 login(request, user)
                 if user.is_teacher:
                     return redirect(f"user_profile:mentor_profile")
+                elif user.is_staff:
+                    return redirect(f"user_profile:personal_profile")
                 else:
                     return redirect(f"user_profile:student_profile")
             return redirect("accounts:signin")
@@ -77,6 +80,9 @@ def redirect_to(request):
             elif hasattr(request.user, 'studentprofile'):
                 print(2)
                 return redirect('user_profile:student_profile')
+            elif hasattr(request.user, 'personalprofile'):
+                print(3)
+                return redirect('user_profile:personal_profile')
             else:
                 return HttpResponseBadRequest()
         else:

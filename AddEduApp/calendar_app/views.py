@@ -181,3 +181,5 @@ def get_event_data(request, event_id):
     }
 
     return JsonResponse(response)
+
+

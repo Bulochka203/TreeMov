@@ -61,20 +61,18 @@
   flex-direction: column
 }
 .detail-btns button {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 30px;
   border-radius: 25px;
   background: white;
   box-shadow: 0px 4px 4px 0px #00000040;
   border: none;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .add-money {
   margin-top: -4px;
-}
-.add-energy {
-  margin-top: 8px;
 }
 .add-money-icon {
   width: 23px;
@@ -131,21 +129,19 @@
   font-weight: 900;
 }
 #counter {
-  width: 70px;
-  height: 46px;
-  box-shadow: 0px 4px 4px 0px #00000040 inset;
-  border-radius: 12.5px;
   font-family: Comfortaa;
   font-size: 20px;
   font-weight: 700;
   display: flex;
-  align-items: center;
-  justify-content: center;
   color: #A816DB;
-  margin: 0 .8rem 1rem .8rem;
+  margin: 0 .8rem 0 .8rem;
 }
 .counter-block {
   display: flex;
+  color: #A816DB;
+  font-family: Comfortaa;
+  font-size: 20px;
+  font-weight: 700;
 }
 .counter-block button {
   border: none;
@@ -178,4 +174,54 @@
   border: none;
   box-shadow: 0px 4px 4px 0px #00000040;
   color: #A816DB;
+}
+
+.group-event-header{
+  height: 4vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.group-event-active{
+  border-radius: 20px;
+  padding: 3px;
+  margin: 3px;
+  border: #a373e1 solid 2px;
+  background: #a373e1;
+  font-weight: 900;
+  font-size: large;
+  width: 40%;
+  display: inherit;
+  align-items: center;
+  justify-content: center;
+}
+
+.group-event{
+  border-radius: 20px;
+  padding: 3px;
+  margin: 3px;
+  background: #ffffff;
+  border: #7218e5 solid 2px;
+  font-weight: 900;
+  font-size: large;
+  width: 40%;
+  display: inherit;
+  align-items: center;
+  justify-content: center;
+}
+
+.group-event-empty{
+  border-radius: 20px;
+  padding: 3px;
+  margin: 3px;
+  border: #737ee1 solid 2px;
+  background: #737ee1 ;
+  font-weight: 900;
+  font-size: large;
+  width: 40%;
+  display: inherit;
+  align-items: center;
+  justify-content: center;
 }
