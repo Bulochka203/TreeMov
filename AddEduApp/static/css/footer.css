@@ -1,0 +1,37 @@
+body {
+  padding-bottom: 60px;
+}
+.navbar {
+  position: fixed;
+  width: 100%;
+  bottom: -1px;
+  z-index: 5000;
+  background-color: #fff;
+  box-shadow: 8px 15px 8px 25px rgba(0, 0, 0, 0.3);
+  padding: 0.5rem 0;
+}
+.navbar ul{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+.navbar ul li{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+}
+.navbar ul li a:hover{
+  color: linear-gradient(180deg, #16C1DB, #A816DB);
+}
+.nav-img {
+  width: 40px;
+  height: 40px;
+}
+.nav-link-active {
+    filter: invert(0.5) sepia(1) saturate(5) hue-rotate(175deg);
+}

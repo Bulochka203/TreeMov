@@ -1,0 +1,131 @@
+/* colors 1:  
+#C2DB8D - 1
+#16C1DB - 2
+#96DB00 - 3
+#A816DB - 4
+#DB670B - 5
+
+*/
+
+.profile{
+  background: linear-gradient(180deg, #A816DB 0%, #9E58E4 0.01%, #00DDFF 74.7%) no-repeat;
+}
+.news{
+  background: linear-gradient(180deg, #A816DB, #16C1DB);
+}
+.tree .toolbar-addon #collect{
+  background: linear-gradient(180deg, #A816DB, #16C1DB);
+}
+.calender{
+  background-color: #fff;
+}
+.calender header{
+  color: #ffffff;
+  background: linear-gradient(180deg, #A816DB, #16C1DB);
+}
+.calender .dance-navbar{
+  background: linear-gradient(180deg, #A816DB, #16C1DB);
+}
+.calender .dance-navbar .dance-nav-toggle{
+  background: transparent;
+}
+.news .dance-navbar{
+  background-color: #A816DB;
+}
+.profile .dance-navbar{
+  background-color: #A816DB;
+}
+.staff .dance-navbar{
+  background-color: #ffffff;
+}
+.staff .dance-navbar h2 a{
+  color: #000000;
+}
+.staff .dance-navbar > ul > li > a {
+  color: #000000;
+}
+.staff .dance-nav-toggle{
+  color:rgb(0, 0, 0);
+}
+.staff .dance-nav-toggle:hover {
+  color: #445253;
+}
+.block {
+  background: linear-gradient(180deg, #16C1DB 0%, #7816DB 99.99%, #A816DB 100%);
+  color: #fff;
+}
+
+.text-spoiler{
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+.achievment{
+  background: #7916DB;
+}
+
+.another-achievements{
+  background: #9934FF;
+}
+.another-achievements a{
+    color: #ffffff;
+}
+.dance-balance{
+    background-color: #fff;
+}
+.information .link{
+    background-color: #fff;
+}
+.dance-navbar{
+  background-color: #16C1DB;
+}
+.dance-nav-toggle {
+    /* цвет текста */
+    color: #ffffff;
+  }
+  .dance-navbar > ul > li > a:hover,
+  .dance-navbar > ul > li > a:focus {
+    color: rgb(92, 25, 83);
+  }
+  /* цвет текста при наведении */
+  .dance-nav-toggle:hover {
+    color: #bffbff;
+  }
+.dance-navbar h2 a{
+    color: #ffffff;
+  }
+.dance-navbar > ul > li > a {
+    color: #ffffff;
+  }
+.dance-navbar > ul > li > a:after {
+    background: #04ff4f;
+  }
+.dance-navbar > ul > li > a:hover:before {
+    background: #04ff4f;
+  }
+.active .nav-messenger,
+.active .nav-profile, 
+.active .nav-home,
+.active .nav-shop,
+.active .nav-news,
+.active .nav-messenger:hover,
+.active .nav-profile:hover, 
+.active .nav-home:hover,
+.active .nav-shop:hover,
+.active .nav-news:hover{
+  filter: invert(0.5) sepia(1) saturate(5) hue-rotate(175deg)
+}
+.staff .spoiler{
+  background: antiquewhite;
+}
+.members ul li{
+  color: #A816DB;
+}
+.commands > ul > li{
+  color: #A816DB;
+}
+.commands > ul > li > a {
+  color: #A816DB;
+}
+.post-title{
+  color: #fff;
+}

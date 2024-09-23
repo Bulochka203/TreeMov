@@ -1,0 +1,177 @@
+{% extends 'user_profile/layout.html' %}
+{% block title %}Профиль{% endblock %}
+{% block body %}group-detail{% endblock %}
+{% block content %}
+<div class="group-detail-body no-cp">
+  <div class="detail-header">
+    <div class="members-and-btns">
+      <h1 class="gradient-text-lowercase no-cp">Участники</h1>
+      <svg id="detail-settings-btn" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path opacity="0.4" d="M2.0835 13.4178V11.5845C2.0835 10.5011 2.96891 9.6053 4.06266 9.6053C5.94808 9.6053 6.71891 8.27197 5.771 6.63655C5.22933 5.69905 5.55225 4.4803 6.50016 3.93863L8.30225 2.90738C9.12516 2.4178 10.1877 2.70947 10.6772 3.53238L10.7918 3.7303C11.7293 5.36572 13.271 5.36572 14.2189 3.7303L14.3335 3.53238C14.8231 2.70947 15.8856 2.4178 16.7085 2.90738L18.5106 3.93863C19.4585 4.4803 19.7814 5.69905 19.2397 6.63655C18.2918 8.27197 19.0627 9.6053 20.9481 9.6053C22.0314 9.6053 22.9272 10.4907 22.9272 11.5845V13.4178C22.9272 14.5011 22.0418 15.397 20.9481 15.397C19.0627 15.397 18.2918 16.7303 19.2397 18.3657C19.7814 19.3136 19.4585 20.522 18.5106 21.0636L16.7085 22.0949C15.8856 22.5845 14.8231 22.2928 14.3335 21.4699L14.2189 21.272C13.2814 19.6365 11.7397 19.6365 10.7918 21.272L10.6772 21.4699C10.1877 22.2928 9.12516 22.5845 8.30225 22.0949L6.50016 21.0636C6.0461 20.8022 5.71431 20.3713 5.57761 19.8655C5.4409 19.3597 5.51045 18.8203 5.771 18.3657C6.71891 16.7303 5.94808 15.397 4.06266 15.397C2.96891 15.397 2.0835 14.5011 2.0835 13.4178Z" fill="url(#paint0_linear_401_686)"/>
+        <path d="M12.5002 15.8856C13.398 15.8856 14.2591 15.5289 14.894 14.894C15.5289 14.2591 15.8856 13.398 15.8856 12.5002C15.8856 11.6023 15.5289 10.7412 14.894 10.1063C14.2591 9.47142 13.398 9.11475 12.5002 9.11475C11.6023 9.11475 10.7412 9.47142 10.1063 10.1063C9.47142 10.7412 9.11475 11.6023 9.11475 12.5002C9.11475 13.398 9.47142 14.2591 10.1063 14.894C10.7412 15.5289 11.6023 15.8856 12.5002 15.8856Z" fill="url(#paint1_linear_401_686)"/>
+        <defs>
+          <linearGradient id="paint0_linear_401_686" x1="12.5054" y1="2.66895" x2="12.5054" y2="22.3333" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#A816DB"/>
+            <stop offset="1" stop-color="#16C1DB"/>
+          </linearGradient>
+          <linearGradient id="paint1_linear_401_686" x1="12.5002" y1="9.11475" x2="12.5002" y2="15.8856" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#A816DB"/>
+            <stop offset="1" stop-color="#16C1DB"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <a id="return-main-mentor-page" href="{% url 'user_profile:mentor_profile' %}">
+        <svg id="detail-return-btn" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path opacity="0.4" d="M23.6103 2.9165H11.404C6.08109 2.9165 2.9165 6.08109 2.9165 11.3894V23.5957C2.9165 28.904 6.08109 32.0686 11.3894 32.0686H23.5957C28.904 32.0686 32.0686 28.904 32.0686 23.5957V11.3894C32.0832 6.08109 28.9186 2.9165 23.6103 2.9165Z" fill="url(#paint0_linear_401_711)"/>
+          <path d="M20.2999 12.3665H12.7895L13.2708 11.8853C13.6937 11.4624 13.6937 10.7624 13.2708 10.3395C13.0649 10.136 12.7872 10.022 12.4979 10.022C12.2085 10.022 11.9308 10.136 11.7249 10.3395L9.43535 12.629C9.01243 13.052 9.01243 13.752 9.43535 14.1749L11.7249 16.4645C11.9437 16.6832 12.2208 16.7853 12.4979 16.7853C12.7749 16.7853 13.052 16.6832 13.2708 16.4645C13.6937 16.0415 13.6937 15.3415 13.2708 14.9186L12.8916 14.5395H20.2999C22.1666 14.5395 23.6979 16.0561 23.6979 17.9374C23.6979 19.8186 22.1812 21.3353 20.2999 21.3353H13.1249C12.527 21.3353 12.0312 21.8311 12.0312 22.429C12.0312 23.027 12.527 23.5228 13.1249 23.5228H20.2999C23.377 23.5228 25.8854 21.0145 25.8854 17.9374C25.8854 14.8603 23.377 12.3665 20.2999 12.3665Z" fill="url(#paint1_linear_401_711)"/>
+          <defs>
+            <linearGradient id="paint0_linear_401_711" x1="17.4926" y1="2.9165" x2="17.4926" y2="32.0686" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#16C1DB"/>
+              <stop offset="1" stop-color="#A816DB"/>
+            </linearGradient>
+            <linearGradient id="paint1_linear_401_711" x1="17.5018" y1="10.022" x2="17.5018" y2="23.5228" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#16C1DB"/>
+              <stop offset="1" stop-color="#A816DB"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </a>
+    </div>
+    <div class="group-name-block">
+      <h4 class="group-name-text gradient-text-lowercase no-cp">”{{ group.name }}“</h4>
+    </div>
+  </div>
+  <svg class="background-icon" viewBox="0 0 144 144" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g opacity="0.2">
+      <rect x="2" y="2" width="140" height="140" rx="35" fill="white" stroke="url(#paint0_linear_401_553)" stroke-width="4"/>
+      <path d="M111.319 24.3857C111.892 24.9833 112.245 25.7509 112.319 26.5631C112.392 27.3752 112.183 28.184 111.724 28.8571L86.9336 65.3098L110.391 72.3455C111.08 72.552 111.696 72.9507 112.161 73.4925C112.627 74.0344 112.922 74.6955 113.01 75.3943C113.098 76.0932 112.976 76.7992 112.658 77.4251C112.34 78.051 111.84 78.5695 111.221 78.9166L37.2061 120.465C36.4898 120.867 35.6519 121.018 34.829 120.893C34.0062 120.769 33.2468 120.375 32.6747 119.778C32.1026 119.18 31.7515 118.413 31.6787 117.601C31.6058 116.79 31.8155 115.983 32.2736 115.31L57.0662 78.8507L33.6089 71.815C32.9195 71.6085 32.304 71.2098 31.8386 70.668C31.3732 70.1261 31.0782 69.465 30.9899 68.7662C30.9017 68.0673 31.0241 67.3613 31.3421 66.7354C31.66 66.1095 32.1596 65.591 32.7791 65.2439L106.794 23.696C107.509 23.2941 108.346 23.1428 109.168 23.2668C109.99 23.3907 110.748 23.7827 111.321 24.3788L111.319 24.3857ZM43.84 67.384L63.9089 73.4033C64.4613 73.5689 64.9681 73.8585 65.3886 74.2489C65.809 74.6393 66.1314 75.1196 66.3297 75.6511C66.5281 76.1825 66.5968 76.7504 66.5305 77.309C66.4642 77.8676 66.2647 78.4013 65.9479 78.8672L47.1218 106.542L100.153 76.7744L80.0908 70.7572C79.5384 70.5916 79.0316 70.302 78.6112 69.9116C78.1907 69.5212 77.8684 69.0409 77.67 68.5094C77.4717 67.978 77.4029 67.4101 77.4692 66.8515C77.5356 66.2929 77.7351 65.7592 78.0519 65.2933L96.8779 37.6187L43.84 67.384Z" fill="url(#paint1_linear_401_553)"/>
+      <path d="M43.84 67.384L63.9089 73.4033C64.4613 73.5689 64.9681 73.8585 65.3886 74.2489C65.809 74.6393 66.1314 75.1196 66.3297 75.6511C66.5281 76.1825 66.5968 76.7504 66.5305 77.309C66.4642 77.8676 66.2647 78.4013 65.9479 78.8672L47.1218 106.542L100.153 76.7744L80.0908 70.7572C79.5384 70.5916 79.0316 70.302 78.6112 69.9116C78.1907 69.5212 77.8684 69.0409 77.67 68.5094C77.4717 67.978 77.4029 67.4101 77.4692 66.8515C77.5356 66.2929 77.7351 65.7592 78.0519 65.2933L96.8779 37.6187L43.84 67.384Z" fill="url(#paint2_linear_401_553)"/>
+    </g>
+    <defs>
+      <linearGradient id="paint0_linear_401_553" x1="72" y1="0" x2="72" y2="144" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#A816DB"/>
+        <stop offset="1" stop-color="#16C1DB"/>
+      </linearGradient>
+      <linearGradient id="paint1_linear_401_553" x1="88.5109" y1="17.0316" x2="55.4888" y2="127.129" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#16C1DB"/>
+        <stop offset="0.9999" stop-color="#A816DB"/>
+        <stop offset="1" stop-color="#A816DB" stop-opacity="0"/>
+      </linearGradient>
+      <linearGradient id="paint2_linear_401_553" x1="88.5109" y1="17.0316" x2="55.4888" y2="127.129" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#16C1DB"/>
+        <stop offset="0.9999" stop-color="#A816DB"/>
+        <stop offset="1" stop-color="#A816DB" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+  </svg>
+  <div class="detail-content">
+    {% for student in group.students.all %}
+      <div class="detail-content-item">
+        <div class="detail-student-photo no-cp">
+          {% if not data.photo %}
+            <img src="/static/img/profile_photo.png" alt="">
+          {% else %}
+            <img src="{{ data.photo.url }}" alt="">
+          {% endif %}
+        </div>
+        <div class="student-name no-cp">
+          <p id="student-{{forloop.counter}}">{{student}}</p>
+        </div>
+        <div hidden class="delete-btn-field no-cp">
+          <form action="" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="student-delete" value="{{student.pk}}"/>
+            <button class="delete-btn">
+              <svg class="delete-svg svg-btn" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_401_640)">
+                  <path opacity="0.4" d="M23.0398 23.0399C26.7824 19.2972 26.7824 13.2296 23.0398 9.48699C19.2971 5.74436 13.2295 5.74436 9.48689 9.48699C5.74426 13.2296 5.74426 19.2972 9.48689 23.0399C13.2295 26.7825 19.2971 26.7825 23.0398 23.0399Z" fill="black"/>
+                  <path d="M18.4656 13.0446L16.2633 15.247L14.061 13.0446C13.7831 12.7668 13.3223 12.7668 13.0445 13.0446C12.7667 13.3225 12.7667 13.7833 13.0445 14.0611L15.2468 16.2634L13.0445 18.4658C12.7667 18.7436 12.7667 19.2044 13.0445 19.4822C13.3223 19.7601 13.7831 19.7601 14.061 19.4822L16.2633 17.2799L18.4656 19.4822C18.7435 19.7601 19.2043 19.7601 19.4821 19.4822C19.7599 19.2044 19.7599 18.7436 19.4821 18.4658L17.2798 16.2634L19.4821 14.0611C19.7599 13.7833 19.7599 13.3225 19.4821 13.0446C19.2043 12.7668 18.7435 12.7668 18.4656 13.0446Z" fill="black"/>
+                </g>
+              </svg>
+            </button>
+          </form>
+        </div>
+        <div class="detail-btns no-cp">
+          <button class="add-energy" id="energy-{{forloop.counter}}">
+            <input type="hidden" class="student-pk" value="{{student.pk}}"/>
+            <div class="add-one">+1</div>
+            <div class="svg-ebanaia molnia">
+              <svg class="add-energy-icon" viewBox="0 0 12 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.54642 0.0727152C9.65318 0.132996 9.7358 0.226758 9.78078 0.338684C9.82576 0.450609 9.83043 0.574082 9.79404 0.68893L7.82939 6.90633H11.4543C11.5609 6.90629 11.6651 6.93663 11.7541 6.99361C11.8431 7.05059 11.9131 7.13171 11.9553 7.22696C11.9975 7.32221 12.0102 7.42743 11.9917 7.52961C11.9733 7.63179 11.9245 7.72647 11.8514 7.80196L3.12447 16.8327C3.04003 16.9202 2.92766 16.9772 2.80569 16.9945C2.68371 17.0118 2.55932 16.9883 2.45279 16.9279C2.34625 16.8675 2.26386 16.7738 2.21904 16.662C2.17421 16.5501 2.1696 16.4268 2.20596 16.3121L4.17061 10.0936H0.545652C0.439123 10.0937 0.334914 10.0633 0.245888 10.0064C0.156862 9.94938 0.0869167 9.86826 0.044687 9.77301C0.00245727 9.67776 -0.0102083 9.57255 0.00825369 9.47036C0.0267157 9.36818 0.0754969 9.2735 0.148576 9.19801L8.87553 0.167272C8.95987 0.0799389 9.07206 0.0229597 9.19386 0.00559937C9.31567 -0.011761 9.43992 0.0115186 9.54642 0.0716528V0.0727152ZM1.80779 9.03121H4.90913C4.99449 9.03119 5.07866 9.05068 5.15487 9.08812C5.23108 9.12556 5.29721 9.1799 5.34793 9.24677C5.39865 9.31363 5.43255 9.39116 5.44691 9.47311C5.46126 9.55506 5.45566 9.63914 5.43057 9.7186L3.93826 14.439L10.1911 7.96877H7.09087C7.00551 7.96878 6.92134 7.94929 6.84513 7.91185C6.76892 7.87441 6.70279 7.82007 6.65207 7.75321C6.60135 7.68634 6.56745 7.60882 6.55309 7.52687C6.53874 7.44491 6.54434 7.36083 6.56943 7.28137L8.06174 2.56095L1.80779 9.03121Z" fill="url(#paint0_linear_401_701)"/>
+                <path d="M1.80779 9.03121H4.90913C4.99449 9.03119 5.07866 9.05068 5.15487 9.08812C5.23108 9.12556 5.29721 9.1799 5.34793 9.24677C5.39865 9.31363 5.43255 9.39116 5.44691 9.47311C5.46126 9.55506 5.45566 9.63914 5.43057 9.7186L3.93826 14.439L10.1911 7.96877H7.09087C7.00551 7.96878 6.92134 7.94929 6.84513 7.91185C6.76892 7.87441 6.70279 7.82007 6.65207 7.75321C6.60135 7.68634 6.56745 7.60882 6.55309 7.52687C6.53874 7.44491 6.54434 7.36083 6.56943 7.28137L8.06174 2.56095L1.80779 9.03121Z" fill="url(#paint1_linear_401_701)"/>
+                <defs>
+                  <linearGradient id="paint0_linear_401_701" x1="6" y1="0" x2="6" y2="17" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#16C1DB"/>
+                    <stop offset="0.9999" stop-color="#A816DB"/>
+                    <stop offset="1" stop-color="#A816DB" stop-opacity="0"/>
+                  </linearGradient>
+                  <linearGradient id="paint1_linear_401_701" x1="6" y1="0" x2="6" y2="17" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#16C1DB"/>
+                    <stop offset="0.9999" stop-color="#A816DB"/>
+                    <stop offset="1" stop-color="#A816DB" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+          </button>
+        </div>
+      </div>
+    {% empty %}
+      <h1 class="empty-message">В этой группе пока нет участников</h1>
+    {% endfor %}
+    <div hidden id="add-save-btns">
+      <input type="hidden" id="link" value="{% url 'user_profile:invite_group_link' name=group.name pk=group.pk %}">
+        <button id="create_ref_link">
+          <svg id="svg-add-group" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M34.1665 27.9167H30.4165V24.1667C30.4165 23.4834 29.8498 22.9167 29.1665 22.9167C28.4832 22.9167 27.9165 23.4834 27.9165 24.1667V27.9167H24.1665C23.4832 27.9167 22.9165 28.4834 22.9165 29.1667C22.9165 29.8501 23.4832 30.4167 24.1665 30.4167H27.9165V34.1667C27.9165 34.8501 28.4832 35.4167 29.1665 35.4167C29.8498 35.4167 30.4165 34.8501 30.4165 34.1667V30.4167H34.1665C34.8498 30.4167 35.4165 29.8501 35.4165 29.1667C35.4165 28.4834 34.8498 27.9167 34.1665 27.9167Z" fill="url(#paint0_linear_401_647)"/>
+            <path opacity="0.4" d="M36.6667 14.1999V6.63325C36.6667 4.28325 35.6 3.33325 32.95 3.33325H26.2167C23.5667 3.33325 22.5 4.28325 22.5 6.63325V14.1833C22.5 16.5499 23.5667 17.4833 26.2167 17.4833H32.95C35.6 17.4999 36.6667 16.5499 36.6667 14.1999Z" fill="url(#paint1_linear_401_647)"/>
+            <path d="M17.5002 14.1999V6.63325C17.5002 4.28325 16.4335 3.33325 13.7835 3.33325H7.05016C4.40016 3.33325 3.3335 4.28325 3.3335 6.63325V14.1833C3.3335 16.5499 4.40016 17.4833 7.05016 17.4833H13.7835C16.4335 17.4999 17.5002 16.5499 17.5002 14.1999Z" fill="url(#paint2_linear_401_647)"/>
+            <path opacity="0.4" d="M17.5002 32.95V26.2167C17.5002 23.5667 16.4335 22.5 13.7835 22.5H7.05016C4.40016 22.5 3.3335 23.5667 3.3335 26.2167V32.95C3.3335 35.6 4.40016 36.6667 7.05016 36.6667H13.7835C16.4335 36.6667 17.5002 35.6 17.5002 32.95Z" fill="url(#paint3_linear_401_647)"/>
+            <defs>
+              <linearGradient id="paint0_linear_401_647" x1="29.1665" y1="22.9167" x2="29.1665" y2="35.4167" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#A816DB"/>
+                <stop offset="1" stop-color="#16C1DB"/>
+              </linearGradient>
+              <linearGradient id="paint1_linear_401_647" x1="29.5833" y1="3.33325" x2="29.5833" y2="17.4835" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#A816DB"/>
+                <stop offset="1" stop-color="#16C1DB"/>
+              </linearGradient>
+              <linearGradient id="paint2_linear_401_647" x1="10.4168" y1="3.33325" x2="10.4168" y2="17.4835" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#A816DB"/>
+                <stop offset="1" stop-color="#16C1DB"/>
+              </linearGradient>
+              <linearGradient id="paint3_linear_401_647" x1="10.4168" y1="22.5" x2="10.4168" y2="36.6667" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#A816DB"/>
+                <stop offset="1" stop-color="#16C1DB"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          Создать ссылку
+        </button>
+      </div>
+  </div>
+</div>
+<script type="text/javascript" src="/static/js/profile/group_detail_script.js"></script>
+<div hidden id="modal-detail" class="form-add-modal">
+  <div class="modal-window">
+    <p class="modal-title-text gradient-text-lowercase p-detail-modal">Начисление </p>
+    <p class="student-name-modal"></p>
+    <form action="" method="post">
+      {% csrf_token %}
+      <div class="counter-block">
+        <button id="decrement">-</button>
+        <div id="counter">1</div>
+        <button id="increment">+</button>
+      </div>
+      <div class="modal-btns">
+        <input type="hidden" id="student-add" name="student-add" value=""/>
+        <input id="add-type" type="hidden" name="add-type" value=""/>
+        <input id="input-counter" type="hidden" name="counter" value="1" />
+        <button id="modal-btns-ok"><p class="gradient-text-lowercase">Ок</p></button>
+        <button id="modal-btns-cancel"><p class="gradient-text-lowercase">Отмена</p></button>
+      </div>
+    </form>
+  </div>
+  <div class="overlay-add-window"></div>
+</div>
+{% endblock %}

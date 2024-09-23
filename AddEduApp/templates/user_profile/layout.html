@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+{% load pwa %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">{% load pwa %}
+    {% progressive_web_app_meta %}
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Poppins:wght@200;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon-16x16.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <link rel="manifest" href="/static/manifest.json">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <script type="text/javascript" src="/static/js/footer/animated_footer.js" defer></script>
+    <script type="text/javascript" src="/static/js/profile/profile_scritps.js" defer></script>
+    <link rel="stylesheet" href="/static/css/footer.css">
+    <link rel="stylesheet" href="/static/css/profile.css">
+    {% if not user.is_teacher %}
+        <link rel="stylesheet" href="/static/css/style.css">
+        <link rel="stylesheet" href="/static/css/colors.css">
+        <link rel="stylesheet" href="/static/css/student_profile_game.css">
+        <script type="text/javascript" src="/static/js/profile/student_profile.js"></script>
+    {% else %}
+        <link rel="stylesheet" href="/static/css/group_detail.css">
+        <link rel="stylesheet" href="/static/css/mentor_profile.css">
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    {% endif %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body class="{% block body %}{% endblock %}">
+{% if not user.is_teacher %}
+{% include 'user_profile/header_profile.html'%}
+{% endif %}
+{% block content %}
+{% endblock %}
+{% include 'user_profile/footer_mobile.html'%}
+</body>
+</html>
