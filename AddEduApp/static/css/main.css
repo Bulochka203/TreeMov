@@ -1,0 +1,103 @@
+@font-face {
+    font-family: 'Manrope';
+    src: local('Manrope'),
+         url('fonts/Manrope.woff2') format('woff2'), 
+         url('fonts/Manrope.woff') format('woff'),
+         url('fonts/Manrope.ttf') format('ttf'),
+         url('fonts/Manrope.eot') format('eot');
+  }
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 3rem;
+    padding: 10px;
+}
+header a{
+    align-items: center;
+}
+.name-tool{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.name-tool h1{
+    margin: 0;
+    align-items: center;
+    padding-right: 0.25rem;
+}
+main{
+    padding: 0 0.5rem 0 0.5rem;
+}
+.members{
+    background-color: aliceblue;
+    text-align: center;
+    border-radius: 10px;
+    padding: 3px;
+    border: 1px solid rgba(28, 71, 109, 0.5);
+    box-shadow: 0 10px 15px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.members .title-up{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.members ul{
+    padding: 0;
+    margin: 0;
+}
+.members ul li{
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: "Manrope";
+    font-size: larger;
+    font-weight:bolder;
+    border-bottom: 2px solid #8213aa;
+}
+.members ul li::marker{
+    content: none;
+}
+.member-tools{
+    width: 25%;
+    padding-right: 0;
+    margin-right: 0;
+    margin-left: 0;
+    border-radius: 15px;
+}
+.member-tools > div > a {
+    text-decoration: none;
+}
+.member-tools > .add-energy{
+    box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2); 
+    border-radius: inherit;
+    margin-bottom: 3px;
+}
+.member-tools > .add-coin{
+    box-shadow: 0 3px 10px -.5px rgba(0, 0, 0, .2); 
+    border-radius: inherit;
+}
+.member-tools .added-energy{
+    background-color: rgba(0, 0, 255, 0.5);
+}
+.member-base{
+    margin: 0;
+}
+.input-and-btn{
+    padding: 10px;
+}
+.input-and-btn .input{
+    margin: 5px;
+}
+.input-and-btn .btn{
+    
+}
+.add-balance{
+
+}
+.min-photo{
+    border-radius: 5px;
+}

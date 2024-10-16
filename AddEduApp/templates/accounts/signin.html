@@ -1,0 +1,26 @@
+{% extends 'accounts/based.html' %}
+{% load static %}
+{% block title %} Войти {% endblock %}
+{% block content %}
+<div>
+    <form action="#" method="post" class="signup-form">
+        {% csrf_token %}
+        <div class="input-fields">
+            <div class="form-group">
+                {{ form.email }}
+                <span class="text-danger">{{ form.errors.email }}</span>
+            </div>
+            <div class="form-group">
+                {{ form.password }}
+                <span class="text-danger">{{ form.errors.password }}</span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="button-submit-form">Войти</button>
+            </div>
+        </div>
+    </form>
+    <div>
+        <p class="enter-link">Ты новенький? <a href="{% url 'accounts:signup' %}">Зарегистрироваться</a></p>
+    </div>
+</div>
+{% endblock content %}

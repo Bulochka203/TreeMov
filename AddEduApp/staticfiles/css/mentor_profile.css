@@ -1,0 +1,331 @@
+.background-icon {
+  width: 144px;
+  height: 144px;
+  position: fixed;
+  left: calc(50% - 72px);
+  top: 60%;
+  z-index: -2;
+}
+.prof-photo img{
+  width: 115px;
+  height: 115px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.information{
+  width: 50%;
+  margin-left: .5rem;
+}
+.information ul{
+  list-style: none;
+  padding: 0;
+}
+.information ul li{
+  font-family: Arial;
+  font-size: 24px;
+  font-weight: 900;
+  text-align: left;
+}
+.gradient-text-lowercase {
+  font-weight: bolder;
+  background: linear-gradient(180deg, #16C1DB, #A816DB);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #0B2349;
+  display: table;
+}
+.profile-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mentor-header {
+  height: 90px;
+}
+.group-settings-button-icon {
+  width 25px;
+  height: 25px;
+}
+.groups-header h1 {
+  font-family: Arial;
+  font-size: 20px;
+  font-weight: 900;
+}
+.groups-header {
+  padding-top: 10px;
+  padding-left: 1rem;
+  display: flex;
+  margin-bottom: .5rem;
+}
+.group-list {
+  width: 355px;
+  background: white;
+  border-radius: 12.5px;
+  box-shadow: 0px 4px 4px 4px #00000040;
+  margin: 1.5rem auto;
+  padding-bottom: 1rem;
+}
+.group {
+  border-bottom: 1px solid #A816DB;
+  padding-bottom: 6px;
+  display: flex;
+  justify-content: center;
+}
+.group-name {
+  color: #A816DB;
+  font-family: Arial;
+  font-size: 16px;
+  font-weight: 900;
+  text-align: center;
+  margin: 0;
+  text-decoration: none;
+  word-break: break-all;
+}
+.group-name:hover {
+  color: #A816DB;
+  text-decoration: none;
+}
+.delete-btn-field {
+  right: 0;
+}
+.group-name-field {
+  margin: 0 1rem;
+}
+.delete-svg {
+  width: 30px;
+  height: 30px;
+}
+.form-add-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.overlay-add-window {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.7;
+  z-index: 0;
+}
+.modal-window {
+  position: relative;
+  z-index: 2;
+  border-radius: 12.5px;
+  width: 345px;
+  min-height: 220px;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  background-color: white;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.modal-title-text {
+  font-family: Arial;
+  font-size: 24px;
+  font-weight: 900;
+}
+.modal-window form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#add-group-btn-modal {
+  border: none;
+  background: #B662D3;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  width: 300px;
+  height: 60px;
+  border-radius: 12.5px;
+  font-family: Arial;
+  font-size: 24px;
+  font-weight: 900;
+  color: white;
+  margin-top: 1rem;
+}
+.input-group-name {
+  border: none;
+  width: 300px;
+  border-bottom: 2px solid #A816DB;
+  font-family: inherit;
+}
+input[type="text"]::placeholder {
+  font-family: Comfortaa;
+  font-size: 1rem;
+  text-align: center;
+}
+.svg-btn {
+ cursor: pointer;
+}
+.delete-btn {
+  border: none;
+  background-color: white;
+}
+#add-save-btns {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#svg-add-group {
+  width: 40px;
+  height: 40px;
+}
+#save-all-groups-btn {
+  margin-top: 1rem;
+  width: 203px;
+  height: 41px;
+  border-radius: 12.5px;
+  background: linear-gradient(180deg, #A816DB 0%, #16C1DB 100%);
+  color: white;
+  font-family: Arial;
+  font-size: 20px;
+  font-weight: 900;
+  border: none;
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+.mentor-body {
+  z-index:1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#add-group-btn {
+  padding: 4px;
+  border-radius: 12.5px;
+  font-family: Arial;
+  font-size: 14px;
+  font-weight: 900;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  border: none;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  color: #A816DB;
+}
+.empty-message {
+  font-family: Arial;
+  font-size: 1rem;
+  font-weight: 900;
+  padding: .5rem;
+  color: #A816DB;
+  margin: 0;
+  text-align: center;
+}
+.no-cp {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+#report-btn {
+    color: white;
+    background-color: #B662D3;
+    width: 355px;
+    height: 60px;
+    border-radius: 12px;
+    font-family: Arial;
+    font-size: 1.5rem;
+    text-align: center;
+    border: none;
+    font-weight: 900;
+    margin: 0;
+    padding: 0;
+}
+#groups-modal {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+.modal-checkbox {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+.modal-checkbox input {
+    margin-right: 8px;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+}
+#go-generate-report {
+  border: none;
+  background: #B662D3;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  border-radius: 12.5px;
+  font-family: Arial;
+  font-size: 24px;
+  font-weight: 900;
+  color: white;
+  margin-top: 1rem;
+}
+.title-modal-report {
+    margin: 0;
+    color: #7816DB;
+    font-size: 16px;
+    font-weight: 700;
+}
+.report-modal {
+    margin: 0 !important;
+}
+input[name="dates"] {
+    width: 100%;
+    text-align: center;;
+}
+.exit {
+    position: absolute;
+    display: flex;
+    top: 1rem;
+    right: 1rem;
+    width: 100px;
+    border: 1px solid #B662D3;
+    border-radius: 12.5px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.exit-text {
+    margin: 0;
+    color: #B662D3;
+    font-family: Arial;
+    font-size: 1rem;
+    font-weight: 900;
+    border: none;
+    text-decoration: none;
+    margin-top: -1px;
+}
+#exit-link {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    justify-content: center;
+}
+#exit-link:visited {
+    color: #B662D3;
+    border: none;
+    text-decoration: none;
+}
+.svg-exit {
+    position: relative;
+    width: 19px;
+    height: 17px;
+    margin-top: -2px;
+    color: #B662D3;
+}

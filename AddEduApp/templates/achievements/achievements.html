@@ -1,0 +1,28 @@
+{% extends 'achievements/base_achievements.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% load static %}
+{% block content %}
+<h1 id="achievements-title">Достижения</h1>
+<div id="achievements-list">
+  {% for ach in achievements_list %}
+  <div class="achievement">
+    <div class="achievement-pic-container">
+      <img class="achievement-pic" src="{{ach.pic.url}}" alt="Иконка достижения">
+    </div>
+    <div class="achievement-info">
+      <h3 class="ach-title">{{ach.title}}</h3>
+      <h4 class="ach-requirement">{{ach.requirement}}</h4>
+      <p class="ach-description">{{ach.description}}</p>
+      <div class="reward-info">
+        <h3 class="ach-reward">Награда: +{{ach.reward}}</h3>
+          <svg class="reward-svg" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path opacity="0.4" d="M10 19C5.584 19 2 15.416 2 11C2 6.584 5.584 3 10 3C14.416 3 18 6.584 18 11C18 15.416 14.416 19 10 19Z" fill="white"/>
+            <path d="M5 12.9325H7.47367C9.67308 12.9325 10.1478 11.9818 10.1478 11.0623V10.9065C10.1478 9.98701 9.67308 9.06753 7.47367 9.06753H5V12.9325ZM6.60868 10.1325H7.23633C8.33339 10.1325 8.45998 10.626 8.45998 10.974V11.0052C8.45998 11.374 8.33339 11.8623 7.23633 11.8623H6.60868V10.1325Z" fill="white"/>
+            <path d="M13.4314 13C15.7152 13 16 11.9195 16 11.374V11.3117H14.328C14.3122 11.3792 14.2542 11.8364 13.3206 11.8364C12.4504 11.8364 12.3185 11.3169 12.3185 11.0104V10.9532C12.3185 10.6623 12.4345 10.1429 13.3154 10.1429C14.2595 10.1429 14.3122 10.6 14.328 10.6831H16V10.626C16 10.013 15.7152 9 13.4314 9H13.194C11.021 9 10.636 10.174 10.636 10.9117V11.0675C10.636 11.8052 11.0263 13 13.194 13H13.4314Z" fill="white"/>
+          </svg>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

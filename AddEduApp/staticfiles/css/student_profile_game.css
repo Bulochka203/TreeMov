@@ -1,0 +1,60 @@
+#game {
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+.game-btn {
+    display: flex;
+    justify-content: center;
+}
+.main-game-btn {
+    width: 300px;
+    height: 50px;
+    border-radius: 23.5px;
+    background: #A8CC59;
+    font-family: Arial;
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-align: center;
+    border: none;
+    color: white;
+    z-index: 1;
+}
+.tree-pic {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    position: absolute;
+}
+.img1 {
+    bottom: -20px;
+}
+.img0 {
+    bottom: -60px;
+}
+.img2 {
+    bottom: -6px;
+}
+.drought {
+    bottom: -10px;
+}
+.resize {
+    max-width: 100%;
+    max-height: 300px;
+    height: auto;
+}
+.clouds {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    position: absolute;
+}
+.info {
+    border-radius: 12.5px;
+    width: 150px;
+}
+.warning {
+    border-radius: 12.5px;
+    width: 150px;
+    background-color: black;
+}
