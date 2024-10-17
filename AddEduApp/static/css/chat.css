@@ -1,0 +1,32 @@
+.background-icon {
+    width: 144px;
+    height: 144px;
+    position: fixed;
+    left: calc(50% - 72px);
+    top: 60%;
+    z-index: -2;
+  }
+.btn-list-chat{
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.btn-list-chat-btn{
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+    display: inherit;
+    height: 7.5vh;
+    text-align: center;
+    width: 60%;
+    background: #B662D3;
+    border-radius: 12px;
+    font-size: large;
+    font-weight: 900;
+}
+.btn-list-chat-btn a{
+    text-decoration: none;
+    color: white;
+}
+

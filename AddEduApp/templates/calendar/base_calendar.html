@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+{% load pwa %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    {% progressive_web_app_meta %}
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon-16x16.png"><link rel="manifest" href="/static/manifest.json">
+    <!--Bootstrap-->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
+
+    <!-- Reset CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <!-- Font Awesome CSS  -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="/static/css/calendar.css">
+    <link rel="stylesheet" href="/static/css/footer.css">
+
+    {% block scripts %}{% endblock %}
+    <script type="text/javascript" src="/static/js/footer/animated_footer.js" defer></script>
+    <script type="text/javascript" src="/static/js/calendar/calendar.js"></script>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+{% include 'calendar/calendar_header.html'%}
+{% block content %}
+{% endblock %}
+{% include 'user_profile/footer_mobile.html'%}
+</body>
+</html>

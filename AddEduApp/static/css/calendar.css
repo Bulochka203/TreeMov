@@ -1,0 +1,434 @@
+* {
+  transition: 0.4s;
+}
+.calendar-title {
+  font-family: Arial;
+  font-size: 1.5rem;
+  text-align: left;
+  user-select: none;
+}
+.calendar-wrapper {
+  background: #D4D4D4;
+  width: 80%;
+  margin: 0 auto;
+  padding: .5rem;
+  border: 1px solid #dcdcff;
+  border-radius: 12.5px;
+}
+.calendar-header {
+  display: flex;
+  cursor: default;
+  margin: 2rem;
+  align-items: center;
+  justify-content: space-between;
+}
+table {
+  clear: both;
+  width: 100%;
+  border: none;
+  border-radius: 3px;
+  border-collapse: collapse;
+  color: #444;
+}
+td {
+  height: 44px;
+  text-align: center;
+  vertical-align: middle;
+  border: none;
+  border-radius: 12.5px;
+  width: 14.28571429%;
+}
+#selected {
+  background: #7816DB2B;
+}
+thead td {
+  border: none;
+  color: #28283b;
+  font-size: 1.5em;
+  padding-top: 0;
+}
+td.not-current {
+  color: #c0c0c0;
+}
+.calendar-text {
+  color: #FFFFFF;
+  font-family: Arial;
+  font-size: 20px;
+  font-weight: 900;
+  padding-top: 4px;
+  vertical-align: top;
+}
+.markk {
+  width: 8px;
+  height: 8px;
+  color: red;
+}
+.dot {
+  padding-top: 4px;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+}
+.month {
+  background: #7816DB;
+  border-radius: 12.5px;
+  height: 60%;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.month p {
+  padding-top: 2px;
+}
+.timer-img {
+  width: 40px;
+  height: 40px;
+}
+.event-text-title {
+  font-family: Arial;
+  font-size: 1.2rem;
+  font-weight: 900;
+  color: #7816DB;
+}
+.event-text-group {
+  font-family: Arial;
+  font-size: 1rem;
+  font-weight: 900;
+  color: #7816DB;
+}
+.event {
+  width: 355px;
+  min-height: 100px;
+  border-radius: 12.5px;
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px 4px #00000040;
+  margin: 1.5rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.main-page-calendar {
+  cursor: default;
+  user-select: none;
+}
+.gradient-text-lowercase {
+  font-weight: bolder;
+  background: linear-gradient(180deg, #16C1DB, #A816DB);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #0B2349;
+  display: table;
+}
+#calendar-settings-btn {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+#delete-update-add-event-btns {
+  margin: 1.5rem auto;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+}
+.calendar-setting-btns {
+  border: none;
+  background: white;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  color: #7816DB;
+  font-family: Arial;
+  font-size: 14px;
+  font-weight: 900;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  border-radius: 12.5px;
+  width: 80px;
+  height: 80px;
+}
+.calendar-setting-btn-img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 2px;
+}
+#add-event-dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.add-event-dialog-item {
+  margin-top: .8rem;
+  width: 355px;
+  height: 42px;
+  border-radius: 12.5px;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  display: flex;
+  align-items: center;
+}
+.dialog-item {
+  font-family: Arial;
+  font-size: 1rem;
+  font-weight: 900;
+  color: #7816DB;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+}
+.dialog-item-group-list div {
+  font-family: Arial;
+  font-size: 1rem;
+  font-weight: 900;
+  color: #7816DB;
+}
+.dialog-item-title {
+  width: 35%;
+}
+#everyweek {
+  margin-left: 6px;
+}
+.dialog-item-title p {
+  padding: 0;
+  margin: 0 auto;
+  font-family: Arial;
+  font-size: 1rem;
+  font-weight: 900;
+  background: linear-gradient(180deg, #A816DB 0%, #16C1DB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #0B2349;
+  display: table;
+}
+.drop-down-list-icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  margin-left: 4px;
+}
+#save-event-btn {
+  background: linear-gradient(180deg, #A816DB 0%, #16C1DB 100%);
+  font-family: Arial;
+  font-size: 20px;
+  font-weight: 900;
+  color: #FFFFFF;
+  width: 200px;
+  height: 40px;
+  border-radius: 12.5px;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  border: none;
+  margin-top: 1.5rem;
+}
+.dropdown-groups {
+  display: none;
+  position: absolute;
+  z-index: 2;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  background: white;
+  top: 1.5rem;
+  width: 200px;
+  max-height: 150px;
+  overflow: auto;
+  border-radius: 12.5px;
+}
+.dopdown-menu-item {
+  color: black;
+  padding: 6px 8px;
+  text-decoration: none;
+  display: block;
+}
+.dopdown-menu-item p {
+  font-family: Arial;
+  font-size: 1rem;
+  font-weight: 700;
+}
+.show {
+  display:block;
+}
+.dropdown {
+  position: relative;
+}
+#dropdown-btn {
+  background: white;
+  border: none;
+}
+#close-dropdown-field {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+[hidden] {
+    display: none !important;
+}
+input[type="time"] {
+    cursor:pointer;
+    display: block;
+    background: white;
+    border: none;
+    color: #7816DB;
+    font-size: 1rem;
+    font-weight: 900;
+    font-family: Arial;
+    outline:none;
+}
+.invalid-feedback {
+    margin-top: .25em;
+    display: block;
+    width: 100%;
+    font-size: .875em;
+    color: #dc3545;
+}
+.btn-and-alert {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.event-text-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 5px 10px 5px;
+  width: 70%;
+}
+.event-text-block p {
+  line-height: 1.5;
+}
+.event-text-title {
+  word-break: break-all;
+}
+.event-svg {
+  width: 40px;
+  height: 40px;
+}
+.delete-event-btn, .update-event-btn {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: white;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+.delete-event-svg, .update-event-svg {
+  width: 100%;
+  height: 100%;
+}
+.delete-modal-window {
+    position: relative;
+    z-index: 2;
+    border-radius: 12.5px;
+    width: 345px;
+    height: 220px;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    background-color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+.form-add-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.overlay-add-window {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.7;
+    z-index: 0;
+}
+.delete-modal-btns {
+  display: flex;
+  flex-direction: column;
+}
+.delete-modal-btns button {
+  width: 300px;
+  height: 60px;
+  border-radius: 12.5px;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  font-family: Arial;
+  font-size: 1.5rem;
+  font-weight: 900;
+  background: white;
+  border: none;
+  color: #7816DB;
+  margin-top: 1rem;
+}
+.modal-title-text {
+  font-family: Arial;
+  font-size: 24px;
+  font-weight: 900;
+}
+select {
+  width: 79%;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: white;
+  appearance: none;
+  border: 1px solid black;
+  font-size: .8rem;
+  font-weight: 700;
+  font-family: Arial;
+  color: #7816DB;
+  text-align: center;
+}
+#event-title, #date {
+  width: 70%;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: white;
+  appearance: none;
+  font-weight: 700;
+  font-size: .8rem;
+  font-family: Arial;
+  color: #7816DB;
+  text-align: center;
+}
+option {
+  padding: 5px 5px;
+}
+select:focus {
+  border: 1px solid black;
+}
+#every-week-checkbox[type="checkbox"] {
+  display: none;
+}
+.custom-checkbox {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+input[type="checkbox"]:checked + .custom-checkbox {
+  background-color: #7816DB;
+  border-color: linear-gradient(180deg, #16C1DB, #A816DB);
+}
+.checkbox {
+  margin-right: 66px;
+}
+.next-prev-months {
+    border-radius: 12.5px;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+}
+.next-month-svg, .prev-month-svg {
+    width: 24px;
+    height: 24px;
+}

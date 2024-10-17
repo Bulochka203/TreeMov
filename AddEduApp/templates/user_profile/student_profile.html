@@ -1,0 +1,138 @@
+{% extends 'user_profile/layout.html' %}
+{% block title %}Профиль{% endblock %}
+{% block body %}profile{% endblock %}
+{% load static %}
+{% block content %}
+<main class="main">
+  <div class="upper py-2 mb-3">
+    <div class="prof-photo">
+      <form method="post" enctype="multipart/form-data" action="{% url 'user_profile:get_photo' %}" id="pic-form">
+        {% csrf_token %}
+        {% if not data.photo %}
+          <label class="image-button not-photo" for="input"></label>
+        {% else %}
+          <label class="image-button" for="input"><img class="profile-img" src="{{ data.photo.url }}" alt=""></label>
+        {% endif %}
+        <input type="file" name="pic" id="input" accept=".jpg, .png" onchange="load_pic()">
+      </form>
+    </div>
+    <div class="information text-white">
+      <ul>
+        {% if data.first_name and data.last_name %}
+        <li>{{ data.first_name }} {{ data.last_name }}</li>
+        {% else %}
+        <li>Name Surname</li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+  <div class="spoiler">
+    <div class="text-spoiler">Достижения</div>
+    <div class="block">
+      <div class="achievments row">
+      {% for achieve in achievement %}
+      <div class="achievment col text-center mb-1">
+        <img src="{{achieve.pic.url}}" alt="" width="50" height="50">
+        <p class="achievement-text"> {{achieve.title}}</p>
+        <div class="row text-center mb-1 rounded">
+          <p class="text-in-achievment">+{{achieve.reward}} <img src="/static/img/moneywhite.png" alt="" width="30" height="30"></p>
+        </div>
+      </div>
+      {% empty %}
+      <div class="achievment col text-center">
+        <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.3726 17.9532C22.5211 17.3668 22.5147 16.7518 22.3541 16.1686C22.1935 15.5853 21.8842 15.0538 21.4564 14.6261C21.0286 14.1983 20.4971 13.889 19.9139 13.7284C19.3306 13.5678 18.7157 13.5614 18.1292 13.7099C16.9101 14.0107 15.9126 15.0082 15.6117 16.2274C15.4632 16.8138 15.4696 17.4288 15.6302 18.012C15.7908 18.5953 16.1001 19.1268 16.5279 19.5546C16.9557 19.9823 17.4872 20.2916 18.0704 20.4522C18.6537 20.6128 19.2686 20.6192 19.8551 20.4707C21.0901 20.1699 22.0876 19.1724 22.3726 17.9532Z" fill="white"/>
+          <path opacity="0.4" d="M9.53169 28.4523C9.24669 28.4523 8.94585 28.3415 8.72419 28.1357C7.20368 26.7237 5.99021 25.0138 5.15938 23.1124C4.32855 21.2111 3.89816 19.159 3.89502 17.084C3.89502 8.75567 10.6717 1.979 19 1.979C27.3284 1.979 34.105 8.75567 34.105 17.084C34.105 21.2957 32.4109 25.1907 29.3392 28.0882C28.8642 28.5315 28.1042 28.5157 27.6609 28.0407C27.2175 27.5657 27.2334 26.8057 27.7084 26.3623C28.9827 25.1804 29.9981 23.747 30.6903 22.1527C31.3825 20.5584 31.7366 18.8379 31.73 17.0998C31.73 10.0857 26.0142 4.36984 19 4.36984C11.9859 4.36984 6.27002 10.0857 6.27002 17.0998C6.27002 20.6782 7.71085 23.9715 10.3392 26.4098C10.8142 26.8532 10.8459 27.6132 10.4025 28.0882C10.1719 28.3201 9.85873 28.451 9.53169 28.4523Z" fill="white"/>
+          <path opacity="0.4" d="M25.3332 24.2233C25.1023 24.2231 24.8764 24.1551 24.6836 24.0279C24.4909 23.9007 24.3396 23.7197 24.2486 23.5074C24.1576 23.2951 24.1309 23.0608 24.1717 22.8334C24.2125 22.6061 24.3191 22.3957 24.4782 22.2283C25.7924 20.8349 26.5207 18.9983 26.5207 17.0983C26.5207 12.9499 23.1482 9.59326 19.0157 9.59326C17.0266 9.59745 15.1201 10.3895 13.7135 11.796C12.307 13.2026 11.5149 15.1091 11.5107 17.0983C11.5107 19.0141 12.2391 20.8349 13.5532 22.2283C13.9966 22.7033 13.9807 23.4633 13.5057 23.9066C13.0307 24.3658 12.2707 24.3341 11.8274 23.8591C10.1012 22.031 9.13837 19.6126 9.13574 17.0983C9.13574 11.6516 13.5691 7.21826 19.0157 7.21826C24.4624 7.21826 28.8957 11.6516 28.8957 17.0983C28.8957 19.6158 27.9457 22.0224 26.2041 23.8591C25.9735 24.091 25.6603 24.222 25.3332 24.2233Z" fill="white"/>
+          <path d="M16.3085 26.3798L14.0285 29.214C12.2235 31.4782 13.8226 34.819 16.7201 34.819H21.2643C24.1618 34.819 25.7768 31.4623 23.956 29.214L21.676 26.3798C20.3143 24.654 17.686 24.654 16.3085 26.3798Z" fill="white"/>
+        </svg>
+        <p class="text-in-achievment">Приведи друга</p>
+        <div>
+          <p class="text-in-achievment">+1
+            <img src="/static/img/moneywhite.png" alt="dance-coin">
+          </p>
+        </div>
+      </div>
+      <div class="achievment col text-center">
+        <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path opacity="0.4" d="M10.2614 24.5169C10.4144 23.8338 10.1361 22.8579 9.64899 22.37L6.26703 18.9824C5.2093 17.9229 4.79178 16.7938 5.09796 15.8179C5.41806 14.8421 6.40621 14.1729 7.88146 13.922L12.2237 13.1971C12.85 13.0856 13.6155 12.5279 13.9077 11.9564L16.3016 7.14685C16.9974 5.76673 17.9438 5 18.9737 5C20.0036 5 20.95 5.76673 21.6459 7.14685L24.0397 11.9564C24.2206 12.3188 24.5964 12.6673 25 12.9043L10.0108 27.9184C9.816 28.1135 9.48198 27.9323 9.53765 27.6535L10.2614 24.5169Z" fill="white" fill-opacity="0.49"/>
+          <path d="M28.2929 22.6665C27.784 23.165 27.5013 24.1205 27.671 24.799L28.6462 28.967C29.0561 30.6979 28.8017 31.9995 27.9254 32.6226C27.5532 32.8775 27.1073 33.0086 26.6533 32.9965C25.9325 32.9965 25.0844 32.7334 24.1516 32.1934L20.0104 29.784C19.3602 29.4101 18.286 29.4101 17.6358 29.784L13.4946 32.1934C11.9257 33.0934 10.583 33.2458 9.72083 32.6226C9.39575 32.3872 9.15547 32.0688 9 31.6533L26.1869 14.8152C26.837 14.1782 27.7558 13.8875 28.6462 14.0398L30.0737 14.2752C31.5719 14.5244 32.5754 15.1891 32.9005 16.1584C33.2115 17.1277 32.7874 18.2493 31.7133 19.3017L28.2929 22.6665Z" fill="white" fill-opacity="0.49"/>
+        </svg>
+        <p class="text-in-achievment">Отбить атаку НЛО</p>
+        <div>
+          <p class="text-in-achievment">+1
+          <img src="/static/img/moneywhite.png" alt="dance-coin">
+          </p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <a href="{% url 'achievments:achievments_list' %}" class="another-achievements row">
+      Все достижения
+    </a>
+    </div>
+  </div>
+  <div class="tree">
+    <div class="row"><h2 class="">Денежное дерево</h2></div>
+    <div class="energy row">
+      <svg class="col" width="20" height="20" viewBox="0 0 362 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M287.984 2.19001C291.204 4.00554 293.697 6.82943 295.053 10.2004C296.41 13.5713 296.551 17.29 295.454 20.749L236.187 208.002H345.539C348.753 208.001 351.897 208.915 354.582 210.631C357.268 212.347 359.378 214.79 360.652 217.659C361.926 220.528 362.308 223.697 361.751 226.774C361.194 229.852 359.722 232.703 357.518 234.977L94.2548 506.961C91.7075 509.595 88.3178 511.312 84.6382 511.833C80.9587 512.354 77.2062 511.647 73.9924 509.829C70.7786 508.01 68.2931 505.187 66.9409 501.819C65.5887 498.451 65.4497 494.737 66.5463 491.282L125.813 303.997H16.4605C13.2469 303.998 10.1032 303.084 7.41762 301.368C4.732 299.652 2.62199 297.209 1.34806 294.34C0.0741277 291.471 -0.30795 288.303 0.248986 285.225C0.805923 282.148 2.27749 279.296 4.48204 277.022L267.745 5.03785C270.289 2.40757 273.674 0.691492 277.348 0.16864C281.023 -0.354212 284.771 0.346912 287.984 2.15801V2.19001ZM54.535 271.999H148.092C150.667 271.998 153.206 272.585 155.505 273.713C157.804 274.84 159.799 276.477 161.329 278.491C162.859 280.505 163.882 282.84 164.315 285.308C164.748 287.776 164.579 290.308 163.822 292.701L118.804 434.869L307.432 240H213.908C211.333 240.001 208.794 239.414 206.495 238.286C204.196 237.159 202.201 235.522 200.671 233.508C199.141 231.494 198.118 229.16 197.685 226.691C197.252 224.223 197.421 221.691 198.178 219.298L243.196 77.1297L54.535 271.999Z" fill="url(#paint0_linear_18_183)"/>
+        <path d="M54.535 271.999H148.092C150.667 271.998 153.206 272.585 155.505 273.713C157.804 274.84 159.799 276.477 161.329 278.491C162.859 280.505 163.882 282.84 164.315 285.308C164.748 287.776 164.579 290.308 163.822 292.701L118.804 434.869L307.432 240H213.908C211.333 240.001 208.794 239.414 206.495 238.286C204.196 237.159 202.201 235.522 200.671 233.508C199.141 231.494 198.118 229.16 197.685 226.691C197.252 224.223 197.421 221.691 198.178 219.298L243.196 77.1297L54.535 271.999Z" fill="url(#paint1_linear_18_183)"/>
+        <defs>
+          <linearGradient id="paint0_linear_18_183" x1="181" y1="0" x2="181" y2="512" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#16C1DB"/>
+            <stop offset="0.9999" stop-color="#A816DB"/>
+            <stop offset="1" stop-color="#A816DB" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="paint1_linear_18_183" x1="181" y1="0" x2="181" y2="512" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#16C1DB"/>
+            <stop offset="0.9999" stop-color="#A816DB"/>
+            <stop offset="1" stop-color="#A816DB" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <p class="gradient-text col" id="energy">{{data.energy}}</p></div>
+    <div id="stage">
+      <div id="game"></div>
+      <script type="module" src="/static/js/profile/game.js" defer></script>
+    </div>
+    <div>
+      <div class="game-btn">
+        {% if tree == 0 %}
+          <button class="main-game-btn" id="game-start-btn">Посадить</button>
+        {% else %}
+          <button class="main-game-btn" id="collect-coins">Собрать урожай</button>
+        {% endif %}
+      </div>
+      <div class="buster-btns">
+        <div class="buster-btn-field">
+          <form method="post" action="/profile/repulse_the_attack" id="waterbucket-form">
+            {% csrf_token %}
+            <input hidden name="buster-pk" id="waterbucket-pk" value={{busters_pk.waterbucket_pk}}>
+          </form>
+          <button class="buster-btn" id="waterbucket"></button>
+          <div class="counter"><p id="waterbucket-counter">{{busters.waterbucket}}</p></div>
+        </div>
+        <div>
+          <form method="post" action="/profile/repulse_the_attack" id="antimagnet-form">
+            {% csrf_token %}
+            <input hidden name="buster-pk" id="antimagnet-pk" value={{busters_pk.antimagnet_pk}}>
+          </form>
+          <button class="buster-btn" id="antimagnet"></button>
+          <div class="counter"><p id="antimagnet-counter">{{busters.antimagnet}}</p></div>
+        </div>
+        <div>
+          <form method="post" action="/profile/repulse_the_attack" id="magicdom-form">
+            {% csrf_token %}
+            <input hidden name="buster-pk" id="magicdom-pk" value={{busters_pk.magicdom_pk}}>
+          </form>
+          <button class="buster-btn" id="magicdom"></button>
+          <div class="counter"><p id="magicdom-counter">{{busters.magicdom}}</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer></footer>
+</main>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+{% endblock %}

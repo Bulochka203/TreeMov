@@ -1,0 +1,209 @@
+{% extends 'calendar/base_calendar.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<div class="main-page-calendar">
+  <div class="calendar-wrapper">
+    <div id="divCal">
+    </div>
+  </div>
+  <div class="calendar-events">
+    <div class="events-list" id="events">
+      {% for event in event_list %}
+      <div class="event">
+        <div class="event-svg">
+          <svg class="timer-img" viewBox="0 0 51 51" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path opacity="0.4" d="M25.4999 46.7498C30.3862 46.7498 35.0724 44.8088 38.5275 41.3537C41.9826 37.8985 43.9237 33.2124 43.9237 28.3261C43.9237 23.4398 41.9826 18.7537 38.5275 15.2985C35.0724 11.8434 30.3862 9.90234 25.4999 9.90234C20.6136 9.90234 15.9275 11.8434 12.4724 15.2985C9.01724 18.7537 7.07617 23.4398 7.07617 28.3261C7.07617 33.2124 9.01724 37.8985 12.4724 41.3537C15.9275 44.8088 20.6136 46.7498 25.4999 46.7498Z" fill="url(#paint0_linear_401_1411)"/>
+            <path d="M25.4999 29.2188C24.6286 29.2188 23.9061 28.4963 23.9061 27.625V17C23.9061 16.1287 24.6286 15.4062 25.4999 15.4062C26.3711 15.4062 27.0936 16.1287 27.0936 17V27.625C27.0936 28.4963 26.3711 29.2188 25.4999 29.2188ZM31.6411 7.33125H19.3586C18.5086 7.33125 17.8286 6.65125 17.8286 5.80125C17.8286 4.95125 18.5086 4.25 19.3586 4.25H31.6411C32.4911 4.25 33.1711 4.93 33.1711 5.78C33.1711 6.63 32.4911 7.33125 31.6411 7.33125Z" fill="url(#paint1_linear_401_1411)"/>
+            <defs>
+              <linearGradient id="paint0_linear_401_1411" x1="25.4999" y1="9.90234" x2="25.4999" y2="46.7498" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#A816DB"/>
+                <stop offset="1" stop-color="#16C1DB"/>
+              </linearGradient>
+              <linearGradient id="paint1_linear_401_1411" x1="25.4999" y1="4.25" x2="25.4999" y2="29.2188" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#A816DB"/>
+                <stop offset="1" stop-color="#16C1DB"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="event-text-block">
+            <p class="event-text-title">{{event.title}}</p>
+            <p class="event-text-title">{{event.time}}</p>
+            <p class="event-text-group">Группа: “{{event.group}}”</p>
+        </div>
+        <div id="update-delete-event-block" class="delete-event-block">
+            <button hidden class="delete-event-btn" onclick="open_delete_modal({{event.event_pk}})">
+            <svg class="delete-event-svg" viewBox="0 0 57 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_401_2314)">
+                <path opacity="0.4" d="M40.0692 40.0694C46.5781 33.5605 46.5781 23.0081 40.0692 16.4992C33.5603 9.99027 23.0079 9.99027 16.499 16.4992C9.99006 23.0081 9.99006 33.5605 16.499 40.0694C23.0079 46.5783 33.5603 46.5783 40.0692 40.0694Z" fill="black"/>
+                <path d="M32.1144 22.6864L28.2842 26.5165L24.4541 22.6864C23.9709 22.2032 23.1695 22.2032 22.6863 22.6864C22.2031 23.1696 22.2031 23.971 22.6863 24.4541L26.5165 28.2843L22.6863 32.1145C22.2031 32.5977 22.2031 33.399 22.6863 33.8822C23.1695 34.3654 23.9709 34.3654 24.4541 33.8822L28.2842 30.0521L32.1144 33.8822C32.5976 34.3654 33.399 34.3654 33.8822 33.8822C34.3654 33.399 34.3654 32.5977 33.8822 32.1145L30.052 28.2843L33.8822 24.4541C34.3654 23.971 34.3654 23.1696 33.8822 22.6864C33.399 22.2032 32.5976 22.2032 32.1144 22.6864Z" fill="black"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_401_2314">
+                  <rect width="40" height="40" fill="white" transform="translate(0 28.2843) rotate(-45)"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </button>
+          <button hidden class="update-event-btn" onclick="open_update_modal({{event.event_pk}})">
+            <svg class="update-event-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path opacity="0.4" d="M18.3335 26.9167V31.4167C18.3335 35.1667 16.8335 36.6667 13.0835 36.6667H8.5835C4.8335 36.6667 3.3335 35.1667 3.3335 31.4167V26.9167C3.3335 23.1667 4.8335 21.6667 8.5835 21.6667H13.0835C16.8335 21.6667 18.3335 23.1667 18.3335 26.9167ZM29.1668 18.3333C30.1517 18.3333 31.127 18.1393 32.037 17.7624C32.9469 17.3855 33.7737 16.8331 34.4701 16.1366C35.1666 15.4402 35.719 14.6134 36.0959 13.7035C36.4728 12.7935 36.6668 11.8182 36.6668 10.8333C36.6668 9.84841 36.4728 8.87314 36.0959 7.9632C35.719 7.05326 35.1666 6.22647 34.4701 5.53003C33.7737 4.83359 32.9469 4.28114 32.037 3.90423C31.127 3.52732 30.1517 3.33333 29.1668 3.33333C27.1777 3.33333 25.2701 4.1235 23.8635 5.53003C22.457 6.93655 21.6668 8.8442 21.6668 10.8333C21.6668 12.8225 22.457 14.7301 23.8635 16.1366C25.2701 17.5432 27.1777 18.3333 29.1668 18.3333Z" fill="url(#paint0_linear_718_337)"/>
+              <path d="M24.6335 36.6667C24.4121 36.6654 24.195 36.6056 24.0043 36.4932C23.8135 36.3808 23.6559 36.2199 23.5476 36.0269C23.4392 35.8339 23.3839 35.6155 23.3873 35.3942C23.3906 35.1728 23.4526 34.9563 23.5668 34.7667L25.1835 32.0667C25.5335 31.4667 26.3002 31.2833 26.9002 31.6333C27.5002 31.9833 27.6835 32.75 27.3335 33.35L27.0335 33.85C29.0792 33.3194 30.891 32.1251 32.185 30.4541C33.4789 28.7831 34.1818 26.73 34.1835 24.6167C34.1835 23.9333 34.7502 23.3667 35.4335 23.3667C36.1168 23.3667 36.6668 23.9333 36.6668 24.6333C36.6668 31.2667 31.2668 36.6667 24.6335 36.6667ZM4.5835 16.6167C3.90016 16.6167 3.3335 16.0667 3.3335 15.3667C3.3335 8.73333 8.7335 3.33333 15.3668 3.33333C15.8335 3.33333 16.2335 3.58333 16.4668 3.96666C16.6835 4.36666 16.6835 4.83333 16.4502 5.23333L14.8335 7.91666C14.4668 8.51666 13.7002 8.71666 13.1168 8.35C12.9753 8.26607 12.8518 8.15499 12.7533 8.02316C12.6549 7.89132 12.5834 7.74131 12.5432 7.58178C12.5029 7.42224 12.4946 7.25631 12.5186 7.09354C12.5427 6.93077 12.5988 6.77437 12.6835 6.63333L12.9835 6.13333C8.8835 7.19999 5.8335 10.9333 5.8335 15.3667C5.8335 16.0667 5.26683 16.6167 4.5835 16.6167Z" fill="url(#paint1_linear_718_337)"/>
+              <defs>
+                <linearGradient id="paint0_linear_718_337" x1="20.0002" y1="3.33333" x2="20.0002" y2="36.6667" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#A816DB"/>
+                  <stop offset="1" stop-color="#16C1DB"/>
+                </linearGradient>
+                <linearGradient id="paint1_linear_718_337" x1="20.0002" y1="3.33333" x2="20.0002" y2="36.6667" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#A816DB"/>
+                  <stop offset="1" stop-color="#16C1DB"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </button>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <form action="" method="post" id="add-update-event-form">
+      {% csrf_token %}
+      <input type="hidden" name="updated-event-pk" id="updated-event-pk">
+      <div hidden id="add-event-dialog">
+        <div class="add-event-dialog-item">
+          <div class="dialog-item-title"><p>Название</p></div>
+          <div class="dialog-item">
+            <input autocomplete="off" required id="event-title" name="event-title" type="text">
+          </div>
+        </div>
+        <div class="add-event-dialog-item">
+          <div class="dialog-item-title"><p>Группа</p></div>
+          <div class="dialog-item">
+            <select required name="select-group" id="select-group">
+              <option value="">Выберите группу</option>
+              {% for group in groups %}
+                <option value="{{group.pk}}">{{group.name}}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="add-event-dialog-item">
+          <div class="dialog-item-title"><p>Дата</p></div>
+          <div class="dialog-item"><input autocomplete="off" required id="date" name="date" type="date"></div>
+        </div>
+        <div class="add-event-dialog-item">
+          <div class="dialog-item-title"><p>Начало</p></div>
+          <div class="dialog-item"><input autocomplete="off" required id="start-time" name="start-time" type="time" onblur="validationTime()"></div>
+        </div>
+        <div class="add-event-dialog-item">
+          <div class="dialog-item-title"><p>Конец</p></div>
+          <div class="dialog-item"><input autocomplete="off" required id="end-time" name="end-time" type="time" onblur="validationTime()"></div>
+        </div>
+        <div class="add-event-dialog-item">
+          <div id="everyweek" class="dialog-item-title"><p>Еженедельно</p></div>
+          <div class="dialog-item">
+            <label class="checkbox">
+              <input autocomplete="off" id="every-week-checkbox" name="every-week-checkbox" type="checkbox" value="1">
+              <span class="custom-checkbox"></span>
+            </label>
+          </div>
+        </div>
+        <div class="btn-and-alert">
+          <div hidden class="invalid-feedback d-block" id="usernameError">Время начала не может быть больше времени окончания!</div>
+          <button id="save-event-btn">Сохранить</button>
+        </div>
+      </div>
+    </form>
+    <div hidden id="delete-update-add-event-btns">
+      <button id="delete-event" class="calendar-setting-btns">
+        <svg class="calendar-setting-btn-img" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M27.9169 5.93337V3.33337C27.9169 2.65004 27.3502 2.08337 26.6669 2.08337C25.9836 2.08337 25.4169 2.65004 25.4169 3.33337V5.83337H14.5836V3.33337C14.5836 2.65004 14.0169 2.08337 13.3336 2.08337C12.6502 2.08337 12.0836 2.65004 12.0836 3.33337V5.93337C7.58355 6.35004 5.40022 9.03337 5.06689 13.0167C5.03355 13.5 5.43355 13.9 5.90022 13.9H34.1002C34.5836 13.9 34.9836 13.4834 34.9336 13.0167C34.6002 9.03337 32.4169 6.35004 27.9169 5.93337Z" fill="url(#paint0_linear_401_1631)"/>
+          <path opacity="0.4" d="M35 18.0633V20.9633C35 21.98 34.1 22.7633 33.1 22.5967C32.6333 22.53 32.15 22.48 31.6667 22.48C29.2369 22.4844 26.9079 23.4516 25.1897 25.1697C23.4716 26.8879 22.5044 29.2169 22.5 31.6467C22.5 32.4133 22.8 33.48 23.1167 34.4467C23.2023 34.6978 23.2266 34.9657 23.1875 35.2281C23.1485 35.4904 23.0473 35.7397 22.8923 35.955C22.7374 36.1703 22.5332 36.3454 22.2968 36.4657C22.0604 36.5861 21.7986 36.6481 21.5333 36.6467H13.3333C7.5 36.6467 5 33.3133 5 28.3133V18.0467C5 17.13 5.75 16.38 6.66667 16.38H33.3333C34.25 16.3967 35 17.1467 35 18.0633Z" fill="url(#paint1_linear_401_1631)"/>
+          <path d="M31.6667 25C27.9833 25 25 27.9833 25 31.6666C25 35.35 27.9833 38.3333 31.6667 38.3333C35.35 38.3333 38.3333 35.35 38.3333 31.6666C38.3333 27.9833 35.35 25 31.6667 25ZM34.3333 34.4C34.0833 34.65 33.7667 34.7666 33.45 34.7666C33.1333 34.7666 32.8167 34.65 32.5667 34.4L31.6833 33.5166L30.7667 34.4333C30.5167 34.6833 30.2 34.8 29.8833 34.8C29.5667 34.8 29.25 34.6833 29 34.4333C28.7675 34.1981 28.6372 33.8807 28.6372 33.55C28.6372 33.2192 28.7675 32.9019 29 32.6666L29.9167 31.75L29.0333 30.8666C28.8009 30.6314 28.6705 30.314 28.6705 29.9833C28.6705 29.6526 28.8009 29.3352 29.0333 29.1C29.5167 28.6166 30.3167 28.6166 30.8 29.1L31.6833 29.9833L32.5167 29.15C33 28.6666 33.8 28.6666 34.2833 29.15C34.7667 29.6333 34.7667 30.4333 34.2833 30.9166L33.45 31.75L34.3333 32.6333C34.8167 33.1333 34.8167 33.9166 34.3333 34.4ZM14.1667 25C13.7333 25 13.3 24.8166 12.9833 24.5166C12.6833 24.2 12.5 23.7666 12.5 23.3333C12.5 22.9 12.6833 22.4666 12.9833 22.15C13.3667 21.7666 13.95 21.5833 14.5 21.7C14.6 21.7166 14.7 21.75 14.8 21.8C14.9 21.8333 15 21.8833 15.1 21.95L15.35 22.15C15.65 22.4666 15.8333 22.9 15.8333 23.3333C15.8333 23.7666 15.65 24.2 15.35 24.5166L15.1 24.7166C15 24.7833 14.9 24.8333 14.8 24.8666C14.7 24.9166 14.6 24.95 14.5 24.9666C14.3833 24.9833 14.2667 25 14.1667 25ZM20 25C19.5667 25 19.1333 24.8166 18.8167 24.5166C18.5167 24.2 18.3333 23.7666 18.3333 23.3333C18.3333 22.9 18.5167 22.4666 18.8167 22.15C19.45 21.5333 20.5667 21.5333 21.1833 22.15C21.4833 22.4666 21.6667 22.9 21.6667 23.3333C21.6667 23.7666 21.4833 24.2 21.1833 24.5166C20.8667 24.8166 20.4333 25 20 25ZM14.1667 30.8316C13.7333 30.8316 13.3 30.6483 12.9833 30.3483C12.6833 30.0316 12.5 29.5983 12.5 29.165C12.5 28.7316 12.6833 28.2983 12.9833 27.9816C13.15 27.8316 13.3167 27.715 13.5333 27.6316C14.15 27.365 14.8833 27.515 15.35 27.9816C15.65 28.2983 15.8333 28.7316 15.8333 29.165C15.8333 29.5983 15.65 30.0316 15.35 30.3483C15.0333 30.6483 14.6 30.8316 14.1667 30.8316Z" fill="url(#paint2_linear_401_1631)"/>
+          <defs>
+            <linearGradient id="paint0_linear_401_1631" x1="20.0014" y1="2.08337" x2="20.0014" y2="13.9" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#A816DB"/>
+              <stop offset="1" stop-color="#16C1DB"/>
+            </linearGradient>
+            <linearGradient id="paint1_linear_401_1631" x1="20" y1="16.38" x2="20" y2="36.6467" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#A816DB"/>
+              <stop offset="1" stop-color="#16C1DB"/>
+            </linearGradient>
+            <linearGradient id="paint2_linear_401_1631" x1="25.4167" y1="21.6652" x2="25.4167" y2="38.3333" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#A816DB"/>
+              <stop offset="1" stop-color="#16C1DB"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="setting-btn-text">
+          удалить
+        </div>
+      </button>
+      <button id="add-event" class="calendar-setting-btns">
+        <svg class="calendar-setting-btn-img" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M34.1665 27.9166H30.4165V24.1666C30.4165 23.4833 29.8498 22.9166 29.1665 22.9166C28.4832 22.9166 27.9165 23.4833 27.9165 24.1666V27.9166H24.1665C23.4832 27.9166 22.9165 28.4833 22.9165 29.1666C22.9165 29.85 23.4832 30.4166 24.1665 30.4166H27.9165V34.1666C27.9165 34.85 28.4832 35.4166 29.1665 35.4166C29.8498 35.4166 30.4165 34.85 30.4165 34.1666V30.4166H34.1665C34.8498 30.4166 35.4165 29.85 35.4165 29.1666C35.4165 28.4833 34.8498 27.9166 34.1665 27.9166Z" fill="url(#paint0_linear_401_1638)"/>
+          <path opacity="0.4" d="M36.6667 14.2V6.63337C36.6667 4.28337 35.6 3.33337 32.95 3.33337H26.2167C23.5667 3.33337 22.5 4.28337 22.5 6.63337V14.1834C22.5 16.55 23.5667 17.4834 26.2167 17.4834H32.95C35.6 17.5 36.6667 16.55 36.6667 14.2Z" fill="url(#paint1_linear_401_1638)"/>
+          <path d="M17.5002 14.2V6.63337C17.5002 4.28337 16.4335 3.33337 13.7835 3.33337H7.05016C4.40016 3.33337 3.3335 4.28337 3.3335 6.63337V14.1834C3.3335 16.55 4.40016 17.4834 7.05016 17.4834H13.7835C16.4335 17.5 17.5002 16.55 17.5002 14.2Z" fill="url(#paint2_linear_401_1638)"/>
+          <path opacity="0.4" d="M17.5002 32.95V26.2167C17.5002 23.5667 16.4335 22.5 13.7835 22.5H7.05016C4.40016 22.5 3.3335 23.5667 3.3335 26.2167V32.95C3.3335 35.6 4.40016 36.6667 7.05016 36.6667H13.7835C16.4335 36.6667 17.5002 35.6 17.5002 32.95Z" fill="url(#paint3_linear_401_1638)"/>
+          <defs>
+            <linearGradient id="paint0_linear_401_1638" x1="29.1665" y1="22.9166" x2="29.1665" y2="35.4166" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#A816DB"/>
+              <stop offset="1" stop-color="#16C1DB"/>
+            </linearGradient>
+            <linearGradient id="paint1_linear_401_1638" x1="29.5833" y1="3.33337" x2="29.5833" y2="17.4836" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#A816DB"/>
+              <stop offset="1" stop-color="#16C1DB"/>
+            </linearGradient>
+            <linearGradient id="paint2_linear_401_1638" x1="10.4168" y1="3.33337" x2="10.4168" y2="17.4836" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#A816DB"/>
+              <stop offset="1" stop-color="#16C1DB"/>
+            </linearGradient>
+            <linearGradient id="paint3_linear_401_1638" x1="10.4168" y1="22.5" x2="10.4168" y2="36.6667" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#A816DB"/>
+              <stop offset="1" stop-color="#16C1DB"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="setting-btn-text">
+          добавить
+        </div>
+      </button>
+      <button id="update-event" class="calendar-setting-btns">
+        <svg class="calendar-setting-btn-img" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path opacity="0.4" d="M18.3335 26.9167V31.4167C18.3335 35.1667 16.8335 36.6667 13.0835 36.6667H8.5835C4.8335 36.6667 3.3335 35.1667 3.3335 31.4167V26.9167C3.3335 23.1667 4.8335 21.6667 8.5835 21.6667H13.0835C16.8335 21.6667 18.3335 23.1667 18.3335 26.9167ZM29.1668 18.3334C30.1517 18.3334 31.127 18.1394 32.037 17.7625C32.9469 17.3856 33.7737 16.8331 34.4701 16.1367C35.1666 15.4402 35.719 14.6134 36.0959 13.7035C36.4728 12.7936 36.6668 11.8183 36.6668 10.8334C36.6668 9.84846 36.4728 8.87319 36.0959 7.96325C35.719 7.05331 35.1666 6.22651 34.4701 5.53007C33.7737 4.83363 32.9469 4.28119 32.037 3.90428C31.127 3.52737 30.1517 3.33337 29.1668 3.33337C27.1777 3.33337 25.2701 4.12355 23.8635 5.53007C22.457 6.9366 21.6668 8.84425 21.6668 10.8334C21.6668 12.8225 22.457 14.7302 23.8635 16.1367C25.2701 17.5432 27.1777 18.3334 29.1668 18.3334Z" fill="url(#paint0_linear_401_1643)"/>
+          <path d="M24.6335 36.6667C24.4121 36.6655 24.195 36.6056 24.0043 36.4933C23.8135 36.3809 23.6559 36.22 23.5476 36.0269C23.4392 35.8339 23.3839 35.6156 23.3873 35.3942C23.3906 35.1729 23.4526 34.9564 23.5668 34.7667L25.1835 32.0667C25.5335 31.4667 26.3002 31.2834 26.9002 31.6334C27.5002 31.9834 27.6835 32.75 27.3335 33.35L27.0335 33.85C29.0792 33.3195 30.891 32.1251 32.185 30.4541C33.4789 28.7832 34.1818 26.7301 34.1835 24.6167C34.1835 23.9334 34.7502 23.3667 35.4335 23.3667C36.1168 23.3667 36.6668 23.9334 36.6668 24.6334C36.6668 31.2667 31.2668 36.6667 24.6335 36.6667ZM4.5835 16.6167C3.90016 16.6167 3.3335 16.0667 3.3335 15.3667C3.3335 8.73337 8.7335 3.33337 15.3668 3.33337C15.8335 3.33337 16.2335 3.58337 16.4668 3.96671C16.6835 4.36671 16.6835 4.83337 16.4502 5.23337L14.8335 7.91671C14.4668 8.51671 13.7002 8.71671 13.1168 8.35004C12.9753 8.26612 12.8518 8.15504 12.7533 8.0232C12.6549 7.89136 12.5834 7.74136 12.5432 7.58182C12.5029 7.42228 12.4946 7.25636 12.5186 7.09359C12.5427 6.93082 12.5988 6.77442 12.6835 6.63337L12.9835 6.13337C8.8835 7.20004 5.8335 10.9334 5.8335 15.3667C5.8335 16.0667 5.26683 16.6167 4.5835 16.6167Z" fill="url(#paint1_linear_401_1643)"/>
+          <defs>
+            <linearGradient id="paint0_linear_401_1643" x1="20.0002" y1="3.33337" x2="20.0002" y2="36.6667" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#A816DB"/>
+              <stop offset="1" stop-color="#16C1DB"/>
+            </linearGradient>
+            <linearGradient id="paint1_linear_401_1643" x1="20.0002" y1="3.33337" x2="20.0002" y2="36.6667" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#A816DB"/>
+              <stop offset="1" stop-color="#16C1DB"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="setting-btn-text">
+          изменить
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="/static/js/calendar/calendar_settings_btn.js"></script>
+<div hidden id="delete-modal" class="form-add-modal">
+  <div class="delete-modal-window">
+    <p class="modal-title-text gradient-text-lowercase">Удалить</p>
+    <form action="" method="post">
+      {% csrf_token %}
+      <input autocomplete="off" type="hidden" name="event_pk" id="event_pk" value="">
+      <input autocomplete="off" type="hidden" name="delete-date" id="delete-date" value="">
+      <div class="delete-modal-btns">
+        <button id="day-delete" name="one-day">Только сегодня</button>
+        <button id="week-delete" name="every-week">Еженедельно</button>
+      </div>
+    </form>
+  </div>
+  <div class="overlay-add-window"></div>
+</div>
+{% endblock %}
+
