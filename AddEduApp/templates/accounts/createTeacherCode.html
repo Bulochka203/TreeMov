@@ -1,0 +1,31 @@
+{% extends 'accounts/based.html' %}
+{% load static %}
+{% block title %} Войти {% endblock %}
+{% block head %} 
+<link rel="stylesheet" href="{% static 'css/kid_entrance.css' %}" />
+<link rel="stylesheet" href="{% static 'css/staff_entrance.css' %}" />
+<style>
+    html{
+        background: #7A75FF;
+    }
+</style>
+{% endblock head %} 
+{% block content %}
+
+<div>
+    <form method="post" class="signup-form">
+        {% csrf_token %}
+        <div class="input-fields">
+            <h2 class="entrance-head">Регистрация</h2>
+            <div class="form-group">
+                <input type="text" name="teacher_code" class="input-data" placeholder="код преподавателя" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="button-submit-form">Далее</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+{% endblock content %}
