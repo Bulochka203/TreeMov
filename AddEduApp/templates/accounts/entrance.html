@@ -1,0 +1,34 @@
+{% extends 'accounts/based.html' %}
+{% load static %}
+{% block title %} Вход {% endblock %}
+{% block head %} 
+<link rel="stylesheet" href="{% static 'css/kid_entrance.css' %}" />
+{% endblock head%}
+{% block content %}
+<div>
+    <form id="entrance-form" action="#" method="post" class="entrance-form">
+        {% csrf_token %}
+        <div class="input-fields">
+            <h1 class="entrance-head">Вход</h1>
+            <div class="form-group">
+                <button type="button" class="button-submit-form button-student" onclick="redirectTo('student')">Ученики</button>
+            </div>
+            <div class="form-group">
+                <button type="button" class="button-submit-form button-teacher" onclick="redirectTo('teacher')">Преподаватели</button>
+            </div>
+            <a href="{% url 'accounts:signin' %}">АДМИН</a>
+        </div>
+    </form>
+</div>
+<script>
+    function redirectTo(role) {
+        if(role==="student"){
+            window.location.href = "{% url 'accounts:signin' %}?role=" + role;
+        }else{
+            window.location.href = "{% url 'accounts:teacherCode' %}" 
+        }
+    }
+</script>
+{% endblock content %}
+
+
