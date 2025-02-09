@@ -10,52 +10,72 @@ from user_profile.models import MentorProfile, PlayerStatistics, StudentProfile,
 
 
 class SignInForm(forms.Form):
+    name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={"class": "input-data", 'placeholder': 'ФИО'}),
+        validators=[validate_name],
+    )
     email = forms.EmailField(
-        widget=forms.EmailInput(attrs={"class": "input-data", 'placeholder': 'email'}),
+        widget=forms.EmailInput(
+            attrs={"class": "input-data", 'placeholder': 'email'}),
     )
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={"class": "input-data", 'placeholder': 'Пароль'})
+        widget=forms.PasswordInput(
+            attrs={"class": "input-data", 'placeholder': 'Пароль'})
     )
 
 
 class SignUpForm(forms.ModelForm):
-    first_name = forms.CharField(
-        label="Имя",
-        widget=forms.TextInput(attrs={"class": "input-data", 'placeholder': 'Имя'}),
+    full_name = forms.CharField(
+        label=" Имя",
+        widget=forms.TextInput(
+            attrs={"class": "input-data", 'placeholder': 'ФИО'}),
         validators=[validate_name],
     )
-    last_name = forms.CharField(
-        label="Фамилия",
-        widget=forms.TextInput(attrs={"class": "input-data", 'placeholder': 'Фамилия'}),
-        validators=[validate_name],
+    email = forms.EmailField(
+        widget=forms.EmailInput(
+            attrs={"class": "input-data", 'placeholder': 'email'}),
     )
     password1 = forms.CharField(
         label="Пароль",
-        widget=forms.PasswordInput(attrs={"class": "input-data", 'placeholder': 'Пароль'}),
+        widget=forms.PasswordInput(
+            attrs={"class": "input-data", 'placeholder': 'Придумайте пароль'}),
         validators=[validate_password],
     )
     password2 = forms.CharField(
         label="Подтвердите пароль",
-        widget=forms.PasswordInput(attrs={"class": "input-data", 'placeholder': 'Повторите пароль'}),
+        widget=forms.PasswordInput(
+            attrs={"class": "input-data", 'placeholder': 'Повторите пароль'}),
         validators=[validate_password],
     )
     teacher_code = forms.CharField(
         label="Код преподавателя",
-        widget=forms.TextInput(attrs={"class": "input-data", 'id': 'teacher-code', 'placeholder': 'Код преподавателя'}),
+        widget=forms.TextInput(attrs={
+                               "class": "input-data", 'id': 'teacher-code', 'placeholder': 'Код преподавателя'}),
         required=False,
     )
 
     class Meta:
         model = User
-        fields = ["email"]
-        widgets = {"email": forms.EmailInput(attrs={"class": "input-data", 'placeholder': 'email'})}
+        fields = ["full_name", "email"]
+        widgets = {"email": forms.EmailInput(
+            attrs={"class": "input-data", 'placeholder': 'email'})}
 
-    def clean_password2(self):
-        password1 = self.cleaned_data.get("password1")
-        password2 = self.cleaned_data.get("password2")
-        if password1 and password2 and password1 != password2:
-            raise ValidationError("Password didn't match!")
-        return password2
+    def clean(self):
+        cleaned_data = super().clean()
+        full_name = cleaned_data.get("full_name", "").strip()
+        name_parts = full_name.split()
+
+        if len(name_parts) > 1:
+            cleaned_data["first_name"] = " ".join(name_parts[1:])
+            cleaned_data["last_name"] = name_parts[0]
+        else:
+            cleaned_data["first_name"] = full_name
+            cleaned_data["last_name"] = ""
+
+        if cleaned_data.get("password1") != cleaned_data.get("password2"):
+            self.add_error("password2", "Пароли не совпадают")
+        return cleaned_data
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -75,17 +95,17 @@ class SignUpForm(forms.ModelForm):
             user.save()
 
             if user.is_teacher:
-                MentorProfile.objects.create(first_name=self.cleaned_data["first_name"],
-                                             last_name=self.cleaned_data["last_name"], user=user)
+                MentorProfile.objects.create(
+                    first_name=self.cleaned_data["full_name"], user=user)
             elif user.is_staff:
-                PersonalProfile.objects.create(first_name=self.cleaned_data["first_name"],
-                                             last_name=self.cleaned_data["last_name"], user=user)
+                PersonalProfile.objects.create(
+                    first_name=self.cleaned_data["full_name"], user=user)
             else:
                 statistics = PlayerStatistics()
                 statistics.save()
-                student = StudentProfile.objects.create(first_name=self.cleaned_data["first_name"],
-                                                        last_name=self.cleaned_data["last_name"],
-                                                        user=user, statistics=statistics)
+                student = StudentProfile.objects.create(
+                    first_name=self.cleaned_data["full_name"], user=user, statistics=statistics)
                 for buster in Buster.objects.all():
-                    CounterOfBusters.objects.create(student=student, buster=buster, count=2)
+                    CounterOfBusters.objects.create(
+                        student=student, buster=buster, count=2)
         return user
