@@ -1,51 +1,59 @@
 {% extends 'accounts/based.html' %}
 {% load static %}
 {% block title %} Зарегистрироваться {% endblock %}
+
+{% block head %} 
+<link rel="stylesheet" href="{% static 'css/kid_entrance.css' %}" />
+{% if role != "student" %}
+<style>
+    html{
+        background: #7A75FF;
+        
+    }
+    .button-submit-form{
+        background-color: #4B0096;
+    }
+</style>
+{% endif %}
+
+{% endblock head%}
 {% block content %}
 <div class="register-form">
-  <form action="#" method="post" class="signup-form">
-    {% csrf_token %}
-      <div class="input-fields">
-          <div class="form-group">
-              {{ form.first_name }}
-              <div class="text-danger">{{ form.errors.first_name }}</div>
-          </div>
-          <div class="form-group">
-              {{ form.last_name }}
-              <div class="text-danger">{{ form.errors.last_name }}</div>
-          </div>
-          <div class="form-group">
-              {{ form.email }}
-              <div class="text-danger">{{ form.errors.email }}</div>
-          </div>
-          <div class="form-group">
-              {{ form.password1 }}
-              <div class="text-danger">{{ form.errors.password1 }}</div>
-          </div>
-          <div class="form-group">
-              {{ form.password2 }}
-              <div class="text-danger">{{ form.errors.password2 }}</div>
-          </div>
-          <div class="form-group">
-              <div>
-                  <label class="checkbox-label">
-                    <input class="checkbox" id="checkbox" type="checkbox"/>
-                    <span class="checkmark"></span>
-                    <p class="checkbox-label-text">Я преподаватель</p>
-                  </label>
-              </div>
-          </div>
-          <div class="form-group" id="teacher-code" hidden>
-              {{ form.teacher_code }}
-              <div class="text-danger">{{ form.errors.teacher_code }}</div>
-          </div>
-          <div class="form-group">
-              <button type="submit" class="button-submit-form">Создать аккаунт</button>
-          </div>
-          <div>
-              <p class="enter-link">Зарегистрирован? <a href="{% url 'accounts:signin' %}">Войти</a></p>
-          </div>
-      </div>
-  </form>
+    <form action="{% url 'accounts:signup' %}{% if role %}?role={{ role }}{% endif %}" method="post" class="signup-form">
+        {% csrf_token %}
+        
+        {% if role == "teacher" %}
+            <input type="hidden" name="teacher_code" value="{{ teacher_code }}">
+        {% endif %}
+        <div class="input-fields">
+            <h1 class="entrance-head">Регистрация</h1>
+            <div class="form-group">
+                {{ form.full_name }}
+                <div class="text-danger">{{ form.errors.full_name }}</div>
+            </div>
+            <div class="form-group">
+                {{ form.email }}
+                <div class="text-danger">{{ form.errors.email }}</div>
+            </div>
+            <div class="form-group">
+                {{ form.password1 }}
+                <div class="text-danger">{{ form.errors.password1 }}</div>
+            </div>
+            <div class="form-group">
+                {{ form.password2 }}
+                <div class="text-danger">{{ form.errors.password2 }}</div>
+            </div>
+            {% if error %}
+                <p class="text-danger">{{ error }}</p>
+            {% endif %}
+            <div class="form-group">
+                <button type="submit" class="button-submit-form">Создать аккаунт</button>
+            </div>
+            <div>
+                <p class="enter-link">Зарегистрирован? <a href="{% url 'accounts:entrance' %}">Войти</a></p>
+            </div>
+        </div>
+    </form>
 </div>
 {% endblock content %}
+
